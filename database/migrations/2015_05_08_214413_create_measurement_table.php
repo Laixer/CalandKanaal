@@ -12,7 +12,7 @@ class CreateMeasurementTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('measurement', function(Blueprint $table)
+		Schema::create('measurements', function(Blueprint $table)
 		{
 			$table->increments('id');
 			$table->timestamps();
@@ -60,7 +60,7 @@ class CreateMeasurementTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('measurement');
+		Schema::drop('measurements');
 	}
 
 }
