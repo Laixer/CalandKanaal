@@ -107,7 +107,7 @@ class ParserController extends Controller{
             $sensor->save();
         }
 
-		return view('newmeasurement');
+		return redirect()->back()->with('success', 'File is uploaded and parsed');
 	}
 
 }

@@ -22,14 +22,21 @@ $app->get('/', function() {
 });
 
 $app->get('newmeasurement', function() {
-	return view('newmeasurement');
+
+	if (Auth::check())
+        return view('newmeasurement');
+    else
+        return redirect('login');
+});
+
+$app->get('logout', function() {
+
+	Auth::logout();
+	return redirect('login');
+
 });
 
 $app->post('newmeasurement', 'App\Http\Controllers\ParserController@doNewmeasurement');
-
-$app->get('api/test','App\Http\Controllers\MeasurementController@index');
-
-$app->get('test/parser','App\Http\Controllers\ParserController@index');
 
 $app->get('/login', function() {
     return view('login');
