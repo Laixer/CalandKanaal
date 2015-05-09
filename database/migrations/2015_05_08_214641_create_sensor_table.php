@@ -17,6 +17,8 @@ class CreateSensorTable extends Migration {
 			$table->increments('id');
 			$table->timestamps();
 			$table->datetime('measurement_time');
+			$table->integer('measurement_id')->unsigned();
+			$table->foreign('measurement_id')->references('id')->on('measurements')->onUpdate('cascade')->onDelete('cascade');
 			$table->float('val_1_0');
 			$table->float('val_1_1');
 			$table->float('val_2_0');
