@@ -25,7 +25,7 @@ class ParserController extends Controller{
 
 		foreach($parser->getAllRows() as $row) {
 			$sensor = new Sensor;
-			$sensor->measurement_time = 1;
+			$sensor->measurement_time = date("Y-m-d H:i:s", $row[0]);
 			$sensor->measurement_id = $measurement->id;
 			$sensor->val_1_0 = $this->numconv($row[1]);
 			$sensor->val_1_1 = $this->numconv($row[2]);
@@ -62,7 +62,7 @@ class ParserController extends Controller{
 			$sensor->save();
 		}
 
-		return;// "check";//response()->json("oke");
+		return response()->json($measurement);
 
 	}
 

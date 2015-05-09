@@ -48,6 +48,18 @@ class ASCParser
 		}
 	}
 
+	private function concattime($offset, $datetime) {
+		$offset_time = strptime($offset, "%H:%M:%S");
+        $offset_time['unparsed'] = round(ltrim($offset_time['unparsed'], ','), -3)/1000;
+        return mktime(
+			date("H", $datetime) + $offset_time['tm_hour'],
+			date("i", $datetime) + $offset_time['tm_min'],
+			date("s", $datetime) + $offset_time['tm_sec'] + $offset_time['unparsed'],
+			date("n", $datetime),
+			date("j", $datetime),
+			date("Y", $datetime));
+	}
+
 	public function getRecordDate() {
 		return $this->recdate;
 	}
@@ -60,8 +72,12 @@ class ASCParser
 			while (($buffer = fgets($handle, 4096)) !== false) {
 				if ($line >= $this->_valline) {
 					$barr = explode(';', $buffer);
-					if (count($barr) == VALARRAYLEN)
+
+					/* Must have 32 tracks */
+					if (count($barr) == VALARRAYLEN) {
+						$barr[0] = $this->concattime($barr[0], $this->recdate);
 						array_push($arr, $barr);
+					}
 				}
 				$line++;
 			}
