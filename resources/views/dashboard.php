@@ -307,7 +307,7 @@
           <!-- /.search form -->
           <!-- sidebar menu: : style can be found in sidebar.less -->
           <ul class="sidebar-menu">
-            <li class="header">MAIN NAVIGATION</li>
+            <!--<li class="header">MAIN NAVIGATION</li>
             <li class="active treeview">
               <a href="#">
                 <i class="fa fa-dashboard"></i> <span>Dashboard</span> <i class="fa fa-angle-left pull-right"></i>
@@ -361,7 +361,7 @@
                 <li><a href="pages/UI/timeline.html"><i class="fa fa-circle-o"></i> Timeline</a></li>
                 <li><a href="pages/UI/modals.html"><i class="fa fa-circle-o"></i> Modals</a></li>
               </ul>
-            </li>
+            </li>-->
             <li class="treeview">
               <a href="#">
                 <i class="fa fa-edit"></i> <span>Forms</span>
@@ -373,7 +373,7 @@
                 <li><a href="pages/forms/editors.html"><i class="fa fa-circle-o"></i> Editors</a></li>
               </ul>
             </li>
-            <li class="treeview">
+            <!--<li class="treeview">
               <a href="#">
                 <i class="fa fa-table"></i> <span>Tables</span>
                 <i class="fa fa-angle-left pull-right"></i>
@@ -437,7 +437,7 @@
             <li class="header">LABELS</li>
             <li><a href="#"><i class="fa fa-circle-o text-danger"></i> Important</a></li>
             <li><a href="#"><i class="fa fa-circle-o text-warning"></i> Warning</a></li>
-            <li><a href="#"><i class="fa fa-circle-o text-info"></i> Information</a></li>
+            <li><a href="#"><i class="fa fa-circle-o text-info"></i> Information</a></li>-->
           </ul>
         </section>
         <!-- /.sidebar -->

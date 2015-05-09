@@ -21,6 +21,12 @@ $app->get('/', function() {
 		return redirect('login');
 });
 
+$app->get('newmeasurement', function() {
+	return view('newmeasurement');
+});
+
+$app->post('newmeasurement', 'App\Http\Controllers\ParserController@doNewmeasurement');
+
 $app->get('api/test','App\Http\Controllers\MeasurementController@index');
 
 $app->get('test/parser','App\Http\Controllers\ParserController@index');
