@@ -11,27 +11,28 @@ use Illuminate\Contracts\Filesystem\Factory;
 
 class ParserController extends Controller{
 
+	private $uploaddir = '../storage/';
+
 	private function numconv($denot) {
 		return floatval(str_replace(',', '.', str_replace('.', '', $denot)));
-	}
-
-	public function index(){
 	}
 
 	public function doNewmeasurement(Request $request) {
 
 		$newname = 'upload-'.time().'.asc';
+		$newloc = $this->uploaddir.$newname;
 		if ($request->hasFile('ascfile')) {
-			$request->file('ascfile')->move('../storage', $newname);
+			$request->file('ascfile')->move($this->uploaddir, $newname);
 		} else {
 			return redirect()->back()->with('error', 'No ASC file uploaded');
 		}
 
-		$parser = new ASCParser('../storage/'.$newname);
+		$parser = new ASCParser($newloc);
 
 		$measurement = new Measurement;
         $measurement->recording_date = date("Y-m-d H:i:s", $parser->getRecordDate());
 		$measurement->message = $request->input('message');
+		$measurement->ascloc = $newloc;
 
 		if ($request->input('val_1_0') != 'on') $measurement->vecwsm_1_0 = false;
 		if ($request->input('val_1_1') != 'on') $measurement->vecwsm_1_1 = false;
