@@ -16,7 +16,7 @@ class UserTableSeeder extends Seeder {
 			'firstname' => 'John',
 			'lastname' => 'Doe',
 			'email' => 'admin@0x17.nl',
-			'password' => 'ABC@123'
+			'password' => Hash::make('ABC@123')
 		));
 		$this->command->info('User created');
 	}
