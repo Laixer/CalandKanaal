@@ -14,3 +14,7 @@
 $app->get('/', function() use ($app) {
     return $app->welcome();
 });
+
+$app->get('api/test','App\Http\Controllers\MeasurementController@index');
+
+$app->get('test/parser','App\Http\Controllers\ParserController@index');
