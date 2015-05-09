@@ -11,10 +11,26 @@
 |
 */
 
+use Illuminate\Http\Request;
+
 $app->get('/', function() use ($app) {
-    return $app->welcome();
+	return view('dashboard');
 });
 
 $app->get('api/test','App\Http\Controllers\MeasurementController@index');
 
 $app->get('test/parser','App\Http\Controllers\ParserController@index');
+
+$app->get('/login', function() {
+    return view('login');
+});
+
+$app->post('login', function(Request $request) {
+
+    if (Auth::attempt($request->only('email', 'password'))) {
+        return redirect('dashboard');
+    } else {
+		return response()->json(array('error' => 1));
+	}
+
+});
