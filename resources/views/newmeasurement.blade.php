@@ -48,6 +48,7 @@
                       <input name="ascfile" type="file" id="exampleInputFile">
                       <p class="help-block">Upload the .asc file</p>
                     </div>
+					<div class="row margin"><div class="col-sm-6">
                     <div class="checkbox">
                       <label>
                         <input name="val_1_0" type="checkbox" checked> VecWSM 1/0
@@ -128,6 +129,8 @@
                         <input name="val_8_1" type="checkbox" checked> VecWSM 8/1
                       </label>
                     </div>
+				</div>
+				<div class="col-sm-6">
                     <div class="checkbox">
                       <label>
                         <input name="val_9_0" type="checkbox" checked> VecWSM 9/0
@@ -208,6 +211,8 @@
                         <input name="val_16_1" type="checkbox" checked> VecWSM 16/1
                       </label>
                     </div>
+				</div>
+				</div>
                   </div><!-- /.box-body -->
 
                   <div class="box-footer">
