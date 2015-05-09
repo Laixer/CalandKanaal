@@ -13,8 +13,12 @@
 
 use Illuminate\Http\Request;
 
-$app->get('/', function() use ($app) {
-	return view('dashboard');
+$app->get('/', function() {
+
+	if (Auth::check())
+		return view('dashboard');
+	else
+		return redirect('login');
 });
 
 $app->get('api/test','App\Http\Controllers\MeasurementController@index');
@@ -28,7 +32,7 @@ $app->get('/login', function() {
 $app->post('login', function(Request $request) {
 
     if (Auth::attempt($request->only('email', 'password'))) {
-        return redirect('dashboard');
+		return response()->json(array('error' => 0, 'location' => '/'));
     } else {
 		return response()->json(array('error' => 1));
 	}
