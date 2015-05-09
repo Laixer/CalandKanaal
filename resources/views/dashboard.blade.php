@@ -50,6 +50,7 @@
           </a>
           <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
+	 		<?php if (0) { ?>
               <!-- Messages: style can be found in dropdown.less-->
               <li class="dropdown messages-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -126,6 +127,8 @@
                   <li class="footer"><a href="#">See All Messages</a></li>
                 </ul>
               </li>
+			<?php } ?>
+			<?php if (0) { ?>
               <!-- Notifications: style can be found in dropdown.less -->
               <li class="dropdown notifications-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -168,6 +171,8 @@
                   <li class="footer"><a href="#">View all</a></li>
                 </ul>
               </li>
+			<?php } ?>
+			<?php if (0) { ?>
               <!-- Tasks: style can be found in dropdown.less -->
               <li class="dropdown tasks-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -238,11 +243,12 @@
                   </li>
                 </ul>
               </li>
+			<?php } ?>
               <!-- User Account: style can be found in dropdown.less -->
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image"/>
-                  <span class="hidden-xs">Alexander Pierce</span>
+                  <span class="hidden-xs"><?php echo Auth::user()->firstname . ' ' . Auth::user()->lastname; ?></span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- User image -->
