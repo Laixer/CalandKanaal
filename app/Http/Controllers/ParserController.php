@@ -26,6 +26,7 @@ class ParserController extends Controller{
 		foreach($parser->getAllRows() as $row) {
 			$sensor = new Sensor;
 			$sensor->measurement_time = 1;
+			$sensor->measurement_id = $measurement->id;
 			$sensor->val_1_0 = $this->numconv($row[1]);
 			$sensor->val_1_1 = $this->numconv($row[2]);
 			$sensor->val_2_0 = $this->numconv($row[3]);
