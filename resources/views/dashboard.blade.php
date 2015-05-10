@@ -255,12 +255,12 @@
                   <li class="user-header">
                     <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image" />
                     <p>
-                      Alexander Pierce - Web Developer
+                      <?php echo Auth::user()->firstname . ' ' . Auth::user()->lastname; ?> - User
                       <small>Member since Nov. 2012</small>
                     </p>
                   </li>
                   <!-- Menu Body -->
-                  <li class="user-body">
+                  <!--<li class="user-body">
                     <div class="col-xs-4 text-center">
                       <a href="#">Followers</a>
                     </div>
@@ -270,7 +270,7 @@
                     <div class="col-xs-4 text-center">
                       <a href="#">Friends</a>
                     </div>
-                  </li>
+                  </li>-->
                   <!-- Menu Footer-->
                   <li class="user-footer">
                     <div class="pull-left">
@@ -296,9 +296,9 @@
               <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image" />
             </div>
             <div class="pull-left info">
-              <p>Alexander Pierce</p>
+              <p><?php echo Auth::user()->firstname . ' ' . Auth::user()->lastname; ?></p>
 
-              <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+              <a href="#"><i class="fa fa-circle text-success"></i> User</a>
             </div>
           </div>
           <!-- search form -->
@@ -371,6 +371,12 @@
             <li class="treeview">
               <a href="newmeasurement">
                 <i class="fa fa-edit"></i> <span>Upload measurement</span>
+              </a>
+              <a href="table">
+                <i class="fa fa-table"></i> <span>Datatable</span>
+              </a>
+              <a href="graph">
+                <i class="fa fa-pie-chart"></i> <span>Graph</span>
               </a>
               <!--<a href="#">
                 <i class="fa fa-edit"></i> <span>Forms</span>
