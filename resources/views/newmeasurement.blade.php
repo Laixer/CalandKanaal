@@ -51,164 +51,84 @@
 					<div class="row margin"><div class="col-sm-6">
                     <div class="checkbox">
                       <label>
-                        <input name="val_1_0" type="checkbox" checked> VecWSM 1/0
+                        <input name="val_1" type="checkbox" checked> VecWSM 1
                       </label>
                     </div>
                     <div class="checkbox">
                       <label>
-                        <input name="val_1_1" type="checkbox" checked> VecWSM 1/1
+                        <input name="val_2" type="checkbox" checked> VecWSM 2
                       </label>
                     </div>
                     <div class="checkbox">
                       <label>
-                        <input name="val_2_0" type="checkbox" checked> VecWSM 2/0
+                        <input name="val_3" type="checkbox" checked> VecWSM 3
                       </label>
                     </div>
                     <div class="checkbox">
                       <label>
-                        <input name="val_2_1" type="checkbox" checked> VecWSM 2/1
+                        <input name="val_4" type="checkbox" checked> VecWSM 4
                       </label>
                     </div>
                     <div class="checkbox">
                       <label>
-                        <input name="val_3_0" type="checkbox" checked> VecWSM 3/0
+                        <input name="val_5" type="checkbox" checked> VecWSM 5
                       </label>
                     </div>
                     <div class="checkbox">
                       <label>
-                        <input name="val_3_1" type="checkbox" checked> VecWSM 3/1
+                        <input name="val_6" type="checkbox" checked> VecWSM 6
                       </label>
                     </div>
                     <div class="checkbox">
                       <label>
-                        <input name="val_4_0" type="checkbox" checked> VecWSM 4/0
+                        <input name="val_7" type="checkbox" checked> VecWSM 7
                       </label>
                     </div>
                     <div class="checkbox">
                       <label>
-                        <input name="val_4_1" type="checkbox" checked> VecWSM 4/1
-                      </label>
-                    </div>
-                    <div class="checkbox">
-                      <label>
-                        <input name="val_5_0" type="checkbox" checked> VecWSM 5/0
-                      </label>
-                    </div>
-                    <div class="checkbox">
-                      <label>
-                        <input name="val_5_1" type="checkbox" checked> VecWSM 5/1
-                      </label>
-                    </div>
-                    <div class="checkbox">
-                      <label>
-                        <input name="val_6_0" type="checkbox" checked> VecWSM 6/0
-                      </label>
-                    </div>
-                    <div class="checkbox">
-                      <label>
-                        <input name="val_6_1" type="checkbox" checked> VecWSM 6/1
-                      </label>
-                    </div>
-                    <div class="checkbox">
-                      <label>
-                        <input name="val_7_0" type="checkbox" checked> VecWSM 7/0
-                      </label>
-                    </div>
-                    <div class="checkbox">
-                      <label>
-                        <input name="val_7_1" type="checkbox" checked> VecWSM 7/1
-                      </label>
-                    </div>
-                    <div class="checkbox">
-                      <label>
-                        <input name="val_8_0" type="checkbox" checked> VecWSM 8/0
-                      </label>
-                    </div>
-                    <div class="checkbox">
-                      <label>
-                        <input name="val_8_1" type="checkbox" checked> VecWSM 8/1
+                        <input name="val_8" type="checkbox" checked> VecWSM 8
                       </label>
                     </div>
 				</div>
 				<div class="col-sm-6">
                     <div class="checkbox">
                       <label>
-                        <input name="val_9_0" type="checkbox" checked> VecWSM 9/0
+                        <input name="val_9" type="checkbox" checked> VecWSM 9
                       </label>
                     </div>
                     <div class="checkbox">
                       <label>
-                        <input name="val_9_1" type="checkbox" checked> VecWSM 9/1
+                        <input name="val_10" type="checkbox" checked> VecWSM 10
                       </label>
                     </div>
                     <div class="checkbox">
                       <label>
-                        <input name="val_10_0" type="checkbox" checked> VecWSM 10/0
+                        <input name="val_11" type="checkbox" checked> VecWSM 11
                       </label>
                     </div>
                     <div class="checkbox">
                       <label>
-                        <input name="val_10_1" type="checkbox" checked> VecWSM 10/1
+                        <input name="val_12" type="checkbox" checked> VecWSM 12
                       </label>
                     </div>
                     <div class="checkbox">
                       <label>
-                        <input name="val_11_0" type="checkbox" checked> VecWSM 11/0
+                        <input name="val_13" type="checkbox" checked> VecWSM 13
                       </label>
                     </div>
                     <div class="checkbox">
                       <label>
-                        <input name="val_11_1" type="checkbox" checked> VecWSM 11/1
+                        <input name="val_14" type="checkbox" checked> VecWSM 14
                       </label>
                     </div>
                     <div class="checkbox">
                       <label>
-                        <input name="val_12_0" type="checkbox" checked> VecWSM 12/0
+                        <input name="val_15" type="checkbox" checked> VecWSM 15
                       </label>
                     </div>
                     <div class="checkbox">
                       <label>
-                        <input name="val_12_1" type="checkbox" checked> VecWSM 12/1
-                      </label>
-                    </div>
-                    <div class="checkbox">
-                      <label>
-                        <input name="val_13_0" type="checkbox" checked> VecWSM 13/0
-                      </label>
-                    </div>
-                    <div class="checkbox">
-                      <label>
-                        <input name="val_13_1" type="checkbox" checked> VecWSM 13/1
-                      </label>
-                    </div>
-                    <div class="checkbox">
-                      <label>
-                        <input name="val_14_0" type="checkbox" checked> VecWSM 14/0
-                      </label>
-                    </div>
-                    <div class="checkbox">
-                      <label>
-                        <input name="val_14_1" type="checkbox" checked> VecWSM 14/1
-                      </label>
-                    </div>
-                    <div class="checkbox">
-                      <label>
-                        <input name="val_15_0" type="checkbox" checked> VecWSM 15/0
-                      </label>
-                    </div>
-                    <div class="checkbox">
-                      <label>
-                        <input name="val_15_1" type="checkbox" checked> VecWSM 15/1
-                      </label>
-                    </div>
-                    <div class="checkbox">
-                      <label>
-                        <input name="val_16_0" type="checkbox" checked> VecWSM 16/0
-                      </label>
-                    </div>
-                    <div class="checkbox">
-                      <label>
-                        <input name="val_16_1" type="checkbox" checked> VecWSM 16/1
+                        <input name="val_16" type="checkbox" checked> VecWSM 16
                       </label>
                     </div>
 				</div>
