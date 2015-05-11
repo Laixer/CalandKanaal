@@ -24,7 +24,7 @@
     <!-- Date Picker -->
     <link href="plugins/datepicker/datepicker3.css" rel="stylesheet" type="text/css" />
     <!-- Daterange picker -->
-    <link href="plugins/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />
+    <link href="plugins/daterangepicker/new/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />
     <!-- DATA TABLES -->
     <link href="plugins/datatables/dataTables.bootstrap.css" rel="stylesheet" type="text/css" />
     <!-- bootstrap wysihtml5 - text editor -->
