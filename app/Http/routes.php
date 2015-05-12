@@ -66,6 +66,8 @@ $app->post('user/disable', 'App\Http\Controllers\UserController@doDisable');
 
 $app->post('user/enable', 'App\Http\Controllers\UserController@doEnable');
 
+$app->post('user/resetpassword', 'App\Http\Controllers\UserController@doResetPassword');
+
 $app->get('table/active_sensors/{id}', function($id) {
 
 	$arr = array();

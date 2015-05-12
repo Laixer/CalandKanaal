@@ -6,6 +6,7 @@ use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Filesystem\Factory;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller{
 
@@ -29,6 +30,15 @@ class UserController extends Controller{
 
 		$user = User::find($request->input('userid'));
 		$user->active = 1;
+		$user->save();
+
+		return response()->json(array('success' => 1));
+	}
+
+	public function doResetPassword(Request $request) {
+
+		$user = User::find($request->input('userid'));
+		$user->password = Hash::make('ABC@123');
 		$user->save();
 
 		return response()->json(array('success' => 1));

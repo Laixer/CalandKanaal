@@ -42,7 +42,7 @@
                             </span>
 							<?php } ?>
 							<span class="btn-group">
-								<button class="btn btn-block btn-info btn-xs">Reset password</button>
+								<button class="btn btn-block btn-info btn-xs reset">Reset password</button>
 							</span>
 							<span class="btn-group">
 								<button class="btn btn-block btn-danger btn-xs userdel">Delete</button>
@@ -86,6 +86,17 @@
                 $.post("user/enable",{userid: $id, _token:"<?php echo csrf_token(); ?>"}, function(data) {
                  if (data.success) {
                         $cthis.removeClass('btn-success').addClass('btn-danger').text('Disable');
+                    }
+                });
+            });
+            $('.reset').click(function(e){
+                e.preventDefault();
+                var $cthis = $(this);
+                var $id = $cthis.closest('tr').find('td:first-child').attr('data-id');
+                $.post("user/resetpassword",{userid: $id, _token:"<?php echo csrf_token(); ?>"}, function(data) {
+                 if (data.success) {
+                        //$cthis.removeClass('btn-success').addClass('btn-danger').text('Disable');
+						alert("Password reset to: ABC@123");
                     }
                 });
             });
