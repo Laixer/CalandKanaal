@@ -7,7 +7,7 @@
                 <div class="box-header">
                   <h3 class="box-title">Responsive Hover Table</h3>
                   <div class="box-tools">
-                      <button type="button" class="btn btn-sm  btn-success  pull-right">New user</button>
+                      <a href="newuser" class="btn btn-sm  btn-success  pull-right">New user</a>
                   </div>
                 </div><!-- /.box-header -->
                 <div class="box-body table-responsive no-padding">

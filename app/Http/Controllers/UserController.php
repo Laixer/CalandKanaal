@@ -10,6 +10,18 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller{
 
+	public function doNew(Request $request) {
+
+		$user = new User;
+		$user->firstname = $request->input('firstname');
+		$user->lastname = $request->input('lastname');
+		$user->email = $request->input('email');
+		$user->password = Hash::make($request->input('password'));
+		$user->save();
+
+        return redirect()->back()->with('success', 'User is created');
+	}
+
 	public function doDelete(Request $request) {
 
 		User::destroy($request->input('userid'));

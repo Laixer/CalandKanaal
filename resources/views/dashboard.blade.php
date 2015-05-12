@@ -111,6 +111,9 @@ function get_gravatar( $email, $s = 80, $d = 'mm', $r = 'g', $img = false, $atts
               <a href="user">
                 <i class="fa fa-user"></i> <span>Users</span>
               </a>
+              <a href="measurement">
+                <i class="fa fa-th"></i> <span>Measurement</span>
+              </a>
  			  <?php } ?>
               <a href="table">
                 <i class="fa fa-table"></i> <span>Datatable</span>

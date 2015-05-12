@@ -31,9 +31,9 @@
                   <table id="example2" class="table table-bordered table-hover">
                     <thead>
                       <tr>
-                        <th>x</th>
-                        <th>y</th>
-                        <th>z</th>
+                        <th>Measurement Time</th>
+                        <th>Sensor 0</th>
+                        <th>Sensor 1</th>
                       </tr>
                     </thead>
 

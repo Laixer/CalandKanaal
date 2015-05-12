@@ -60,6 +60,26 @@ $app->get('user', function() {
 
 });
 
+$app->get('newuser', function() {
+
+	//$users = User::all();
+	if (Auth::check())
+		return view('newuser');//->with('users', $users);
+	else
+		return redirect('login');
+
+});
+
+$app->get('measurement', function() {
+
+	$measurements = Measurement::all();
+	if (Auth::check())
+		return view('measurement')->with('measurements', $measurements);
+	else
+		return redirect('login');
+
+});
+
 $app->post('user/delete', 'App\Http\Controllers\UserController@doDelete');
 
 $app->post('user/disable', 'App\Http\Controllers\UserController@doDisable');
@@ -67,6 +87,8 @@ $app->post('user/disable', 'App\Http\Controllers\UserController@doDisable');
 $app->post('user/enable', 'App\Http\Controllers\UserController@doEnable');
 
 $app->post('user/resetpassword', 'App\Http\Controllers\UserController@doResetPassword');
+
+$app->post('measurement/delete', 'App\Http\Controllers\MeasurementController@doDelete');
 
 $app->get('table/active_sensors/{id}', function($id) {
 
@@ -175,6 +197,9 @@ $app->get('logout', function() {
 });
 
 $app->post('newmeasurement', 'App\Http\Controllers\ParserController@doNewmeasurement');
+
+$app->post('newuser', 'App\Http\Controllers\UserController@doNew');
+
 
 $app->get('/login', function() {
     return view('login');
