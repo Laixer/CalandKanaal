@@ -4,17 +4,10 @@
     <meta charset="UTF-8">
     <title>AdminLTE 2 | Log in</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
-    <!-- Bootstrap 3.3.2 -->
     <link href="../../bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <!-- Font Awesome Icons -->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-    <!-- Theme style -->
     <link href="../../dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
-    <!-- iCheck -->
     <link href="../../plugins/iCheck/square/blue.css" rel="stylesheet" type="text/css" />
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
@@ -23,7 +16,7 @@
   <body class="login-page">
     <div class="login-box">
       <div class="login-logo">
-        <a href="../../index2.html"><b>Admin</b>LTE</a>
+        <a href="javascript:void(0);"><b>Admin</b>LTE</a>
       </div><!-- /.login-logo -->
       <div class="login-box-body">
         <p class="login-box-msg">Sign in to start your session</p>
@@ -57,28 +50,27 @@
       </div><!-- /.login-box-body -->
     </div><!-- /.login-box -->
 
-    <!-- jQuery 2.1.3 -->
     <script src="../../plugins/jQuery/jQuery-2.1.3.min.js"></script>
-    <!-- Bootstrap 3.3.2 JS -->
     <script src="../../bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-    <!-- iCheck -->
     <script src="../../plugins/iCheck/icheck.min.js" type="text/javascript"></script>
     <script>
       $(function () {
         $('input').iCheck({
           checkboxClass: 'icheckbox_square-blue',
           radioClass: 'iradio_square-blue',
-          increaseArea: '20%' // optional
+          increaseArea: '20%'
         });
       });
    $(document).ready(function() {
 	  $('#frm-login').submit(function(e){
           e.preventDefault();
+		$('button[type="submit"]').text('Signing in');
 		$.post( "/login", {email:$('input[name="email"').val(),password:$('input[name="password"').val(),_token:$('input[name="_token"').val()}, function( data ) {
 	var $rs = data;
 	if ($rs.error) {
-		$('.login-box-msg').html('<font color="red">Username/password invalid</font>');
+		$('.login-box-msg').html('<font color="red">Email/password invalid</font>');
 		$('input[name="password"').val("");
+		$('button[type="submit"]').text('Sign In');
 } else {
  window.location.replace($rs.location);
 }

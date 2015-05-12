@@ -146,9 +146,10 @@
 @stop
 
 @section('script')
-<script>
-      $(document).ready(function(){
-        $("#compose-textarea").wysihtml5();
-      });
-    </script>
+	<script src="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js" type="text/javascript"></script>
+	<script>
+		$(document).ready(function(){
+			$("#compose-textarea").wysihtml5();
+		});
+	</script>
 @stop

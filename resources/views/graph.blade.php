@@ -74,298 +74,137 @@
 @stop
 
 @section('script')
-	<!-- date-range-picker -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js" type="text/javascript"></script>
     <script src="../../plugins/daterangepicker/new/daterangepicker.js" type="text/javascript"></script>
-    <!-- FLOT CHARTS -->
     <script src="../../plugins/flot/jquery.flot.min.js" type="text/javascript"></script>
-    <!-- FLOT RESIZE PLUGIN - allows the chart to redraw when the window is resized -->
     <script src="../../plugins/flot/jquery.flot.resize.min.js" type="text/javascript"></script>
     <script src="../../plugins/flot/jquery.flot.time.min.js" type="text/javascript"></script>
 	<script type="text/javascript" language="javascript" src="../../plugins/flot/jquery.flot.axislabels.js"></script>
-<script type="text/javascript">
+	<script type="text/javascript">
+		$(function() {
+			function drawFlot(begin, end) {
+				$.ajax({
+					"dataType": 'json',
+					"type": "GET",
+					"url": "/graph/sensors/" + $('#date').val() +"/" + $('#sensor').val(),
+					"success": function (data) {
 
-var startDate;
-var endDate;
+					var vec1 = [];
+					var vec2 = [];
+					for(var i=0; i<data.data.length; i++){
+						vec1.push([data.data[i][0]*1000, data.data[i][1]])
+						vec2.push([data.data[i][0]*1000, data.data[i][2]])
+					}
 
-/*$(function () {
-     $('#date').change(function(){
-        $.getJSON("/graph/active_sensors/" + $(this).val(), function(data) {
-        $('#sensor').find('option').remove();
-			$('#message').html(data.message);
+					var line_data1 = {
+                    	label: data.columns[1].sTitle,
+						data: vec1,
+						color: "#3c8dbc"
+					};
 
-		$('#reservationtime').daterangepicker({
-            minDate: new Date(data.begin*1000),
-			maxDate: new Date(data.end*1000),
-			startDate: new Date(data.begin*1000),
-			endDate: new Date(data.end*1000),
-            timePicker: true,
-            timePickerSeconds: true,
-            timePickerIncrement: 1,
-			timePicker12Hour: false,
-            format: 'DD-MM-YYYY HH:mm:ss'
-		},
-       function(start, end) {
-		drawFlot(start.subtract(2,'hours').toDate(), end.subtract(2,'hours').toDate());
-       }
-       );
-			$('#begintime').val(data.begin);
-			$('#endtime').val(data.end);
-          var items = [];
-              $.each(data.data, function( key, val ) {
-               $('#sensor').append( "<option id='" + key + "'>" + val + "</option>" );
-              });
-        });
-      });
-    });*/
+					var line_data2 = {
+						label: data.columns[2].sTitle,
+						data: vec2,
+						color: "#00c0ef"
+					};
 
-$(function () {
+					var begintime;
+					if (!begin)
+						begintime = (new Date($('#begintime').val() * 1000)).getTime();
+					else
+						begintime = begin.getTime();
+					var endtime;
+					if (!end)
+						endtime = (new Date($('#endtime').val() * 1000)).getTime();
+					else
+						endtime = end.getTime();
 
-function drawFlot(begin, end) {
-	$.ajax({
-        "dataType": 'json',
-        "type": "GET",
-        "url": "/graph/sensors/" + $('#date').val() +"/" + $('#sensor').val(),
-        "success": function (data) {
+					var tableops = {
+						grid: {
+							hoverable: true,
+							borderColor: "#f3f3f3",
+							borderWidth: 1,
+							tickColor: "#f3f3f3"
+						},
+						series: {
+							shadowSize: 0,
+							lines: { show: true },
+							points: { show: true }
+						},
+						lines: {
+							fill: false,
+							color: ["#3c8dbc", "#f56954"]
+						},
+						yaxis: {
+							show: true
+						},
+						xaxis: {
+							mode: "time",
+							axisLabel: 'Time',
+							min: begintime,
+							max: endtime
+						},
+						yaxes: [{
+							position: 'left',
+							axisLabel: 'm/s2',
+						}, {
+							position: 'right',
+							axisLabel: 'kPa'
+						}]
+					};
+					$.plot("#line-chart", [line_data1, line_data2], tableops);
+					$("<div class='tooltip-inner' id='line-chart-tooltip'></div>").css({
+						position: "absolute",
+						display: "none",
+						opacity: 0.8
+					}).appendTo("body");
+					$('.yaxisLabel').css('color','#3c8dbc');
+					$('.y2axisLabel').css('color','#00c0ef');
+					$("#line-chart").bind("plothover", function(event, pos, item){
+						if (item) {
+							var x = new Date(item.datapoint[0].toFixed(2)*1000).toLocaleTimeString()   , y = item.datapoint[1].toFixed(2);
+							$("#line-chart-tooltip").html(item.series.label + " of " + x + " = " + y).css({top: item.pageY + 5, left: item.pageX + 5}).fadeIn(200);
+						} else {
+							$("#line-chart-tooltip").hide();
+						}
+					});
+				}
+			});
+		}
 
-                var vec1 = [];
-                var vec2 = [];
-                for(var i=0; i<data.data.length; i++){
-                    vec1.push([data.data[i][0]*1000, data.data[i][1]])
-                    vec2.push([data.data[i][0]*1000, data.data[i][2]])
-                }
+		$('#date').change(function(){
+			$.getJSON("/graph/active_sensors/" + $(this).val(), function(data) {
+				$('#sensor').find('option').remove();
+				$('#message').html(data.message);
 
-                var line_data1 = {
-                    label: data.columns[1].sTitle,
-                    data: vec1,
-                    color: "#3c8dbc"
-                };
+				$('#reservationtime').daterangepicker({
+					minDate: new Date(data.begin*1000),
+					maxDate: new Date(data.end*1000),
+					startDate: new Date(data.begin*1000),
+					endDate: new Date(data.end*1000),
+					timePicker: true,
+					timePickerSeconds: true,
+					timePickerIncrement: 1,
+					timePicker12Hour: false,
+					format: 'DD-MM-YYYY HH:mm:ss'
+				}, function(start, end) {
+					drawFlot(start.toDate(), end.toDate());
+				});
 
-                var line_data2 = {
-                    label: data.columns[2].sTitle,
-                    data: vec2,
-                    color: "#00c0ef"
-                };
+				$('#begintime').val(data.begin);
+				$('#endtime').val(data.end);
 
-			var begintime
-			if (!begin)
-				begintime = (new Date($('#begintime').val() * 1000)).getTime();
-			else
-				begintime = begin.getTime();
-			var endtime;
-			if (!end)
-				endtime = (new Date($('#endtime').val() * 1000)).getTime();
-			else
-				endtime = end.getTime();
-			var tableops = {
-          grid: {
-            hoverable: true,
-            borderColor: "#f3f3f3",
-            borderWidth: 1,
-            tickColor: "#f3f3f3"
-          },
-          series: {
-            shadowSize: 0,
-            lines: {
-              show: true
-            },
-            points: {
-              show: true
-            }
-          },
-          lines: {
-            fill: false,
-            color: ["#3c8dbc", "#f56954"]
-          },
-          yaxis: {
-            show: true
-          },
-          xaxis: {
-            mode: "time",
-            axisLabel: 'Time',
-//            min: (new Date($('#begintime').val() * 1000)).getTime(),
-//            max: (new Date($('#endtime').val() * 1000)).getTime()
-			min: begintime,
-			max: endtime
-          },
-         yaxes: [{
-            position: 'left',
-            axisLabel: 'm/s2',
-        }, {
-            position: 'right',
-            axisLabel: 'kPa'
-        }]
-        };
-        $.plot("#line-chart", [line_data1, line_data2], tableops);
-
-		//Initialize tooltip on hover
-        $("<div class='tooltip-inner' id='line-chart-tooltip'></div>").css({
-          position: "absolute",
-          display: "none",
-          opacity: 0.8
-        }).appendTo("body");
-          $('.yaxisLabel').css('color','#3c8dbc');
-          $('.y2axisLabel').css('color','#00c0ef');
-        $("#line-chart").bind("plothover", function (event, pos, item) {
-
-          if (item) {
-            var x = new Date(item.datapoint[0].toFixed(2)*1000).toLocaleTimeString()   , y = item.datapoint[1].toFixed(2);
-            $("#line-chart-tooltip").html(item.series.label + " of " + x + " = " + y).css({top: item.pageY + 5, left: item.pageX + 5}).fadeIn(200);
-          } else {
-            $("#line-chart-tooltip").hide();
-          }
-
-        });
-
-}
-        });
-
-}
-
-$('#date').change(function(){
-        $.getJSON("/graph/active_sensors/" + $(this).val(), function(data) {
-        $('#sensor').find('option').remove();
-            $('#message').html(data.message);
-
-        $('#reservationtime').daterangepicker({
-            minDate: new Date(data.begin*1000),
-            maxDate: new Date(data.end*1000),
-            startDate: new Date(data.begin*1000),
-            endDate: new Date(data.end*1000),
-            timePicker: true,
-            timePickerSeconds: true,
-            timePickerIncrement: 1,
-            timePicker12Hour: false,
-            format: 'DD-MM-YYYY HH:mm:ss'
-        },
-       function(start, end) {
-        drawFlot(start.toDate(), end.toDate());
-       }
-       );
-            $('#begintime').val(data.begin);
-            $('#endtime').val(data.end);
-          var items = [];
-              $.each(data.data, function( key, val ) {
-               $('#sensor').append( "<option id='" + key + "'>" + val + "</option>" );
-              });
-        });
-      });
-
-
-/*$('#reservationtime').change(function(){
-	var range = $(this).val();
-	if (range) {
-		var ara = range.split(" - ");
-		var begin = new Date(ara[0]);
-		var end = new Date(ara[1]);
-		begin.setHours(begin.getHours() - 2);
-		end.setHours(end.getHours() - 2);
-		console.log(begin);
-		console.log(end);
-		drawFlot(begin, end);
-	}
-});*/
-
-$('#sensor').change(function(){
-	$('#reservationtime').val('');
-//	console.log('kaas');
-drawFlot();
-    /*$.ajax({
-        "dataType": 'json',
-        "type": "GET",
-        "url": "/graph/sensors/" + $('#date').val() +"/" + $('#sensor').val(),
-        "success": function (data) {
-
-				var vec1 = [];
-                var vec2 = [];
-                for(var i=0; i<data.data.length; i++){
-                    vec1.push([data.data[i][0]*1000, data.data[i][1]])
-                    vec2.push([data.data[i][0]*1000, data.data[i][2]])
-                }
-
-                var line_data1 = {
-					label: data.columns[1].sTitle,
-                    data: vec1,
-                    color: "#3c8dbc"
-                };
-
-                var line_data2 = {
-					label: data.columns[2].sTitle,
-                    data: vec2,
-                    color: "#00c0ef"
-                };
-
-		var tableops = {
-          grid: {
-            hoverable: true,
-            borderColor: "#f3f3f3",
-            borderWidth: 1,
-            tickColor: "#f3f3f3"
-          },
-          series: {
-            shadowSize: 0,
-            lines: {
-              show: true
-            },
-            points: {
-              show: true
-            }
-          },
-          lines: {
-            fill: false,
-            color: ["#3c8dbc", "#f56954"]
-          },
-          yaxis: {
-            show: true
-          },
-          xaxis: {
-			mode: "time",
-            axisLabel: 'Time',
-			min: (new Date($('#begintime').val() * 1000)).getTime(),
-			max: (new Date($('#endtime').val() * 1000)).getTime()
-          },
-		 yaxes: [{
-            position: 'left',
-            axisLabel: 'm/s2',
-        }, {
-            position: 'right',
-            axisLabel: 'kPa'
-        }]
-        };
-		$.plot("#line-chart", [line_data1, line_data2], tableops);
-
-		//Initialize tooltip on hover
-        $("<div class='tooltip-inner' id='line-chart-tooltip'></div>").css({
-          position: "absolute",
-          display: "none",
-          opacity: 0.8
-        }).appendTo("body");
-		  $('.yaxisLabel').css('color','#3c8dbc');
-		  $('.y2axisLabel').css('color','#00c0ef');
-        $("#line-chart").bind("plothover", function (event, pos, item) {
-
-          if (item) {
-            var x = new Date(item.datapoint[0].toFixed(2)*1000).toLocaleTimeString()   , y = item.datapoint[1].toFixed(2);
-            $("#line-chart-tooltip").html(item.series.label + " of " + x + " = " + y).css({top: item.pageY + 5, left: item.pageX + 5}).fadeIn(200);
-          } else {
-            $("#line-chart-tooltip").hide();
-          }
-
-        });
-
-
-    		 }
-        });*/
-	});
- });
-/*      $(function () {
-        $('#reservationtime').daterangepicker({
-			minDate: new Date('<?php echo date('D, d M y H:i:s'); ?>'),
-			timePicker: true,
-			timePickerSeconds: true,
-			timePickerIncrement: 1,
-			format: 'DD-MM-YYYY hh:mm:ss'
+				var items = [];
+				$.each(data.data, function(key, val) {
+					$('#sensor').append( "<option id='" + key + "'>" + val + "</option>" );
+				});
+			});
 		});
-	  });*/
-    </script>
+
+		$('#sensor').change(function(){
+			$('#reservationtime').val('');
+			drawFlot();
+		});
+	});
+	</script>
 @stop

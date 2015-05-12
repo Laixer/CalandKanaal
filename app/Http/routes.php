@@ -14,6 +14,7 @@
 use Illuminate\Http\Request;
 use App\Sensor;
 use App\Measurement;
+use App\User;
 
 $app->get('/', function() {
 
@@ -48,6 +49,22 @@ $app->get('table', function() {
     else
         return redirect('login');
 });
+
+$app->get('user', function() {
+
+	$users = User::all();
+	if (Auth::check())
+		return view('user')->with('users', $users);
+	else
+		return redirect('login');
+
+});
+
+$app->post('user/delete', 'App\Http\Controllers\UserController@doDelete');
+
+$app->post('user/disable', 'App\Http\Controllers\UserController@doDisable');
+
+$app->post('user/enable', 'App\Http\Controllers\UserController@doEnable');
 
 $app->get('table/active_sensors/{id}', function($id) {
 
@@ -85,9 +102,9 @@ $app->get('table/sensors/{id}/{sensor}', function($id, $sensor) {
 	$sensname_2 = 'VecWSM '.$name[1].'/1';
 
 	$columns = array(
-	array("sTitle" => "Measurement Time", "aTargets" => 0),
-	array("sTitle" => $sensname_1, "aTargets" => 1),
-	array("sTitle" => $sensname_2, "aTargets" => 2)
+		array("sTitle" => "Measurement Time", "aTargets" => 0),
+		array("sTitle" => $sensname_1, "aTargets" => 1),
+		array("sTitle" => $sensname_2, "aTargets" => 2)
 	);
 
 	$rows = Sensor::where('measurement_id','=',$id)->get();
@@ -163,7 +180,9 @@ $app->get('/login', function() {
 
 $app->post('login', function(Request $request) {
 
-    if (Auth::attempt($request->only('email', 'password'))) {
+	//if (Auth::attempt($request->only('email', 'password'))) {
+	if (Auth::attempt(['email' => $request->input('email'), 'password' => $request->input('password'), 'active' => 1])) {
+//	['email' => $email, 'password' => $password, 'active' => 1]
 		return response()->json(array('error' => 0, 'location' => '/'));
     } else {
 		return response()->json(array('error' => 1));
