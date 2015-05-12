@@ -1,5 +1,7 @@
 @extends('dashboard')
 
+@section('title', 'Graph')
+
 @section('content')
           <div class="row">
 

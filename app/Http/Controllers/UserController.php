@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -20,6 +21,20 @@ class UserController extends Controller{
 		$user->save();
 
         return redirect()->back()->with('success', 'User is created');
+	}
+
+	public function doNewPassword(Request $request) {
+
+		$pwd1 = $request->input('password');
+		$pwd2 = $request->input('password2');
+
+		if ($pwd1 != $pwd2)
+			return redirect()->back()->with('error', 'Passwords do not match');
+
+		Auth::user()->password = Hash::make($request->input('password'));
+		Auth::user()->save();
+
+        return redirect()->back()->with('success', 'Password is changed');
 	}
 
 	public function doDelete(Request $request) {

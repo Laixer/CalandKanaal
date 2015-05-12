@@ -1,9 +1,11 @@
 @extends('dashboard')
 
+@section('title', 'New Measurement')
+
 @section('content')
           <div class="row">
             <!-- left column -->
-            <div class="col-md-6">
+            <div class="col-xs-12">
               <!-- general form elements -->
 
 				<?php if (Session::has('success')) { ?>

@@ -18,7 +18,7 @@ function get_gravatar( $email, $s = 80, $d = 'mm', $r = 'g', $img = false, $atts
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>AdminLTE 2 | Dashboard</title>
+    <title>AdminLTE | @yield('title')</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
@@ -68,7 +68,7 @@ function get_gravatar( $email, $s = 80, $d = 'mm', $r = 'g', $img = false, $atts
                   <!-- Menu Footer-->
                   <li class="user-footer">
                     <div class="pull-left">
-                      <a href="/" class="btn btn-default btn-flat">Profile</a>
+                      <a href="/profile" class="btn btn-default btn-flat">Profile</a>
                     </div>
                     <div class="pull-right">
                       <a href="/logout" class="btn btn-default btn-flat">Sign out</a>
@@ -89,24 +89,23 @@ function get_gravatar( $email, $s = 80, $d = 'mm', $r = 'g', $img = false, $atts
             </div>
             <div class="pull-left info">
               <p><?php echo Auth::user()->firstname . ' ' . Auth::user()->lastname; ?></p>
-
               <a href="#"><i class="fa fa-circle text-success"></i> <?php echo ucfirst(Auth::user()->priv); ?></a>
             </div>
           </div>
-          <form action="#" method="get" class="sidebar-form">
+          <!--<form action="#" method="get" class="sidebar-form">
             <div class="input-group">
               <input type="text" name="q" class="form-control" placeholder="Search..."/>
               <span class="input-group-btn">
                 <button type='submit' name='search' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
               </span>
             </div>
-          </form>
+          </form>-->
 
           <ul class="sidebar-menu">
             <li class="treeview">
 			  <?php if (Auth::user()->priv == 'admin') { ?>
               <a href="newmeasurement">
-                <i class="fa fa-edit"></i> <span>Upload measurement</span>
+                <i class="fa fa-edit"></i> <span>New measurement</span>
               </a>
               <a href="user">
                 <i class="fa fa-user"></i> <span>Users</span>
@@ -128,10 +127,10 @@ function get_gravatar( $email, $s = 80, $d = 'mm', $r = 'g', $img = false, $atts
 
       <div class="content-wrapper">
         <section class="content-header">
-          <h1>Dashboard <small>Control panel</small></h1>
+          <h1>@yield('title') <!--<small>Control panel</small>--></h1>
           <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li class="active">Dashboard</li>
+            <li class="active">@yield('title')</li>
           </ol>
         </section>
 

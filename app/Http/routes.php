@@ -18,8 +18,11 @@ use App\User;
 
 $app->get('/', function() {
 
+	$users = User::count();
+	$measurements = Measurement::count();
+	$sensors = Sensor::count();
 	if (Auth::check())
-		return view('dashboard');
+		return view('home')->with('users', $users)->with('measurements', $measurements)->with('sensors', $sensors);
 	else
 		return redirect('login');
 });
@@ -62,9 +65,17 @@ $app->get('user', function() {
 
 $app->get('newuser', function() {
 
-	//$users = User::all();
 	if (Auth::check())
-		return view('newuser');//->with('users', $users);
+		return view('newuser');
+	else
+		return redirect('login');
+
+});
+
+$app->get('profile', function() {
+
+	if (Auth::check())
+		return view('profile');
 	else
 		return redirect('login');
 
@@ -200,6 +211,7 @@ $app->post('newmeasurement', 'App\Http\Controllers\ParserController@doNewmeasure
 
 $app->post('newuser', 'App\Http\Controllers\UserController@doNew');
 
+$app->post('profile', 'App\Http\Controllers\UserController@doNewPassword');
 
 $app->get('/login', function() {
     return view('login');

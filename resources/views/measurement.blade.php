@@ -1,11 +1,13 @@
 @extends('dashboard')
 
+@section('title', 'Measurements')
+
 @section('content')
           <div class="row">
             <div class="col-xs-12">
               <div class="box">
                 <div class="box-header">
-                  <h3 class="box-title">Responsive Hover Table</h3>
+                  <h3 class="box-title">Recorded measurements</h3>
                   <div class="box-tools">
                       <button type="button" class="btn btn-sm  btn-success  pull-right">New user</button>
                   </div>
