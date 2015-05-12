@@ -54,29 +54,29 @@
     <script src="../../bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
     <script src="../../plugins/iCheck/icheck.min.js" type="text/javascript"></script>
     <script>
-      $(function () {
-        $('input').iCheck({
-          checkboxClass: 'icheckbox_square-blue',
-          radioClass: 'iradio_square-blue',
-          increaseArea: '20%'
-        });
-      });
-   $(document).ready(function() {
-	  $('#frm-login').submit(function(e){
-          e.preventDefault();
-		$('button[type="submit"]').text('Signing in');
-		$.post( "/login", {email:$('input[name="email"').val(),password:$('input[name="password"').val(),_token:$('input[name="_token"').val()}, function( data ) {
-	var $rs = data;
-	if ($rs.error) {
-		$('.login-box-msg').html('<font color="red">Email/password invalid</font>');
-		$('input[name="password"').val("");
-		$('button[type="submit"]').text('Sign In');
-} else {
- window.location.replace($rs.location);
-}
-        });
-        });
-	});
-    </script>
+		$(document).ready(function() {
+			$('input').iCheck({
+				checkboxClass: 'icheckbox_square-blue',
+				radioClass: 'iradio_square-blue',
+				increaseArea: '20%'
+			});
+			$('#frm-login').submit(function(e){
+				e.preventDefault();
+				$('input').prop('disabled', true);
+				$('button[type="submit"]').text('Signing in');
+				$.post( "/login", {email:$('input[name="email"').val(),password:$('input[name="password"').val(),_token:$('input[name="_token"').val()}, function(data){
+					var $rs = data;
+					if ($rs.error) {
+						$('.login-box-msg').html('<font color="red">Email/password invalid</font>');
+						$('input').prop('disabled', false);
+						$('input[name="password"').val("");
+						$('button[type="submit"]').text('Sign In');
+					} else {
+						 window.location.replace($rs.location);
+					}
+				});
+			});
+		});
+	</script>
   </body>
 </html>
