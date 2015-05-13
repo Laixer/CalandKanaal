@@ -54,11 +54,8 @@
 @stop
 
 @section('script')
-<!-- DATA TABES SCRIPT -->
-    <!--<script src="plugins/datatables/jquery.dataTables.js" type="text/javascript"></script>-->
-	<script src="https://cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js" type="text/javascript"></script>
+    <script src="plugins/datatables/jquery.dataTables.min.js" type="text/javascript"></script>
     <script src="plugins/datatables/dataTables.bootstrap.js" type="text/javascript"></script>
-    <!-- page script -->
     <script type="text/javascript">
 	$(function () {
 	 $('#date').change(function(){
