@@ -40,31 +40,25 @@ function get_gravatar( $email, $s = 80, $d = 'mm', $r = 'g', $img = false, $atts
     <div class="wrapper">
 
       <header class="main-header">
-        <!-- Logo -->
         <a href="/" class="logo"><b>Admin</b>LTE</a>
-        <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top" role="navigation">
-          <!-- Sidebar toggle button-->
           <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
             <span class="sr-only">Toggle navigation</span>
           </a>
           <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
-              <!-- User Account: style can be found in dropdown.less -->
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <img src="<?php echo get_gravatar(Auth::user()->email, 80, "identicon"); ?>" class="user-image" alt="User Image"/>
                   <span class="hidden-xs"><?php echo Auth::user()->firstname . ' ' . Auth::user()->lastname; ?></span>
                 </a>
                 <ul class="dropdown-menu">
-                  <!-- User image -->
                   <li class="user-header">
                     <img src="<?php echo get_gravatar(Auth::user()->email, 80, "identicon"); ?>" class="img-circle" alt="User Image" />
                     <p>
                       <?php echo Auth::user()->firstname . ' ' . Auth::user()->lastname . ' - ' . ucfirst(Auth::user()->priv); ?>
                     </p>
                   </li>
-                  <!-- Menu Footer-->
                   <li class="user-footer">
                     <div class="pull-left">
                       <a href="/profile" class="btn btn-default btn-flat">Profile</a>
@@ -91,14 +85,6 @@ function get_gravatar( $email, $s = 80, $d = 'mm', $r = 'g', $img = false, $atts
               <a href="#"><i class="fa fa-circle text-success"></i> <?php echo ucfirst(Auth::user()->priv); ?></a>
             </div>
           </div>
-          <!--<form action="#" method="get" class="sidebar-form">
-            <div class="input-group">
-              <input type="text" name="q" class="form-control" placeholder="Search..."/>
-              <span class="input-group-btn">
-                <button type='submit' name='search' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
-              </span>
-            </div>
-          </form>-->
 
           <ul class="sidebar-menu">
             <li class="treeview">
@@ -126,9 +112,9 @@ function get_gravatar( $email, $s = 80, $d = 'mm', $r = 'g', $img = false, $atts
 
       <div class="content-wrapper">
         <section class="content-header">
-          <h1>@yield('title') <!--<small>Control panel</small>--></h1>
+          <h1>@yield('title')</h1>
           <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
             <li class="active">@yield('title')</li>
           </ol>
         </section>
@@ -145,11 +131,8 @@ function get_gravatar( $email, $s = 80, $d = 'mm', $r = 'g', $img = false, $atts
       </footer>
     </div>
 
-    <!-- jQuery 2.1.3 -->
     <script src="plugins/jQuery/jQuery-2.1.3.min.js"></script>
-    <!-- jQuery UI 1.11.2 -->
     <script src="plugins/jQueryUI/jquery-ui.min.js" type="text/javascript"></script>
-    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
     <script>
       $.widget.bridge('uibutton', $.ui.button);
     </script>
