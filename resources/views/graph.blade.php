@@ -65,7 +65,7 @@
                 </div>
                 <div class="box-body">
 
-                  <div id="message" style="height: 300px;"></div>
+                  <div id="message"></div>
                 </div>
               </div>
 
@@ -76,7 +76,7 @@
 @stop
 
 @section('script')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js" type="text/javascript"></script>
+    <script src="plugins/moment/moment.min.js" type="text/javascript"></script>
     <script src="../../plugins/daterangepicker/new/daterangepicker.js" type="text/javascript"></script>
     <script src="../../plugins/flot/jquery.flot.min.js" type="text/javascript"></script>
     <script src="../../plugins/flot/jquery.flot.resize.min.js" type="text/javascript"></script>
