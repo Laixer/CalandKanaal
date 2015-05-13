@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 use App\Sensor;
 use App\Measurement;
 use App\User;
+use Maatwebsite\Excel\Facades\Excel;
 
 $app->get('/', function() {
 
@@ -150,6 +151,55 @@ $app->get('table/sensors/{id}/{sensor}', function($id, $sensor) {
 	return response()->json(array("columns" => $columns, "data"=> $tarr));
 });
 
+$app->get('table/exportcsv/{id}', function($id) {
+    $table = Sensor::where('measurement_id','=',$id)->get();
+    $filename = "../storage/export.csv";
+    $handle = fopen($filename, 'w+');
+    fputcsv($handle, array('tweet text', 'screen name', 'name', 'created at'));
+
+    foreach($table as $row) {
+        fputcsv($handle, array($row['val_1_0'], $row['val_1_1'], $row['val_2_0'], $row['created_at']));
+    }
+
+    fclose($handle);
+
+    $headers = array(
+        'Content-Type' => 'text/csv',
+    );
+
+    header('Content-Description: File Transfer');
+    header('Content-Type: text/csv');
+    header('Content-Disposition: attachment; filename='.basename($filename));
+    header('Expires: 0');
+    header('Cache-Control: must-revalidate');
+    header('Pragma: public');
+    header('Content-Length: ' . filesize($filename));
+
+	readfile($filename);
+	unlink($filename);
+	exit();
+});
+
+$app->get('table/exportasc/{id}', function($id) {
+    $rec = Measurement::find($id);
+
+    $headers = array(
+        'Content-Type' => 'text/plain',
+    );
+
+	$filename = $rec->ascloc;
+    header('Content-Description: File Transfer');
+    header('Content-Type: text/plain');
+    header('Content-Disposition: attachment; filename='.basename($filename));
+    header('Expires: 0');
+    header('Cache-Control: must-revalidate');
+    header('Pragma: public');
+    header('Content-Length: ' . filesize($filename));
+
+    readfile($filename);
+    exit();
+});
+
 $app->get('graph/active_sensors/{id}', function($id) {
 
 	$arr = array();
@@ -219,9 +269,7 @@ $app->get('/login', function() {
 
 $app->post('login', function(Request $request) {
 
-	//if (Auth::attempt($request->only('email', 'password'))) {
 	if (Auth::attempt(['email' => $request->input('email'), 'password' => $request->input('password'), 'active' => 1])) {
-//	['email' => $email, 'password' => $password, 'active' => 1]
 		return response()->json(array('error' => 0, 'location' => '/'));
     } else {
 		return response()->json(array('error' => 1));

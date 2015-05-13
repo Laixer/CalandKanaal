@@ -8,6 +8,12 @@
               <div class="box">
                 <div class="box-header">
                   <h3 class="box-title">Sensor overview</h3>
+					<div class="box-tools">
+                      <div class="btn-group">
+                          <button id="excsv" type="button" class="btn btn-default disabled">Export CSV</button>
+                          <button id="exasc" type="button" class="btn btn-default disabled">Export ASC</button>
+                        </div>
+					</div>
                 </div><!-- /.box-header -->
                 <div class="box-body">
 			<div class="row">
@@ -54,23 +60,12 @@
     <script src="plugins/datatables/dataTables.bootstrap.js" type="text/javascript"></script>
     <!-- page script -->
     <script type="text/javascript">
-      $(function () {
-    $.ajax({
-        "dataType": 'json',
-        "type": "GET",
-        "url": "/table/sensors/2/" + $('#sensor').val(),
-        "success": function (dataStr) {
-            $('#example2').dataTable({
-                "aaData": dataStr.data,
-                "aoColumns": dataStr.columns
-            });
-        }
-    });
-      });
 	$(function () {
 	 $('#date').change(function(){
 		$.getJSON("/table/active_sensors/" + $(this).val(), function(data) {
 		$('#sensor').find('option').remove();
+		$('#excsv').removeClass('disabled');
+		$('#exasc').removeClass('disabled');
 		  var items = [];
 			  $.each(data, function( key, val ) {
 			   $('#sensor').append( "<option id='" + key + "'>" + val + "</option>" );
@@ -81,7 +76,6 @@
 var table;
 $(function () {
  $('#sensor').change(function(){
-
     $.ajax({
         "dataType": 'json',
         "type": "GET",
@@ -97,9 +91,16 @@ $(function () {
 			}
         }
     });
+});
 
+$('#excsv').click(function(e){
+	e.preventDefault();
+	window.open('/table/exportcsv/' + $('#date').val(), 'Export CSV');
+});
 
-
+$('#exasc').click(function(e){
+	e.preventDefault();
+	window.open('/table/exportasc/' + $('#date').val(), 'Export CSV');
 });
 
  });
