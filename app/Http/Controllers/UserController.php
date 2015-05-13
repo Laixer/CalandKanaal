@@ -18,6 +18,7 @@ class UserController extends Controller{
 		$user->lastname = $request->input('lastname');
 		$user->email = $request->input('email');
 		$user->password = Hash::make($request->input('password'));
+		$user->priv = $request->input('priv');
 		$user->save();
 
         return redirect()->back()->with('success', 'User is created');
