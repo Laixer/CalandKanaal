@@ -8,9 +8,6 @@
               <div class="box">
                 <div class="box-header">
                   <h3 class="box-title">Recorded measurements</h3>
-                  <div class="box-tools">
-                      <button type="button" class="btn btn-sm  btn-success  pull-right">New user</button>
-                  </div>
                 </div><!-- /.box-header -->
                 <div class="box-body table-responsive no-padding">
                   <table class="table table-hover">

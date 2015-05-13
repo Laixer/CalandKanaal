@@ -26,7 +26,6 @@ function get_gravatar( $email, $s = 80, $d = 'mm', $r = 'g', $img = false, $atts
     <link href="dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
     <link href="dist/css/skins/_all-skins.min.css" rel="stylesheet" type="text/css" />
     <link href="plugins/iCheck/flat/blue.css" rel="stylesheet" type="text/css" />
-    <link href="plugins/morris/morris.css" rel="stylesheet" type="text/css" />
     <link href="plugins/jvectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
     <link href="plugins/daterangepicker/new/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />
     <link href="plugins/datatables/dataTables.bootstrap.css" rel="stylesheet" type="text/css" />
