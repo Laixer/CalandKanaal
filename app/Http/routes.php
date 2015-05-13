@@ -38,7 +38,7 @@ $app->get('newmeasurement', function() {
 
 $app->get('graph', function() {
 
-	$list = Measurement::lists('recording_date', 'id');
+	$list = Measurement::all();
 	if (Auth::check())
         return view('graph')->with('list', $list);
     else
@@ -47,7 +47,7 @@ $app->get('graph', function() {
 
 $app->get('table', function() {
 
-	$list = Measurement::lists('recording_date', 'id');
+	$list = Measurement::all();
 	if (Auth::check())
         return view('table')->with('list', $list);
     else
@@ -155,10 +155,78 @@ $app->get('table/exportcsv/{id}', function($id) {
     $table = Sensor::where('measurement_id','=',$id)->get();
     $filename = "../storage/export.csv";
     $handle = fopen($filename, 'w+');
-    fputcsv($handle, array('tweet text', 'screen name', 'name', 'created at'));
+    fputcsv($handle, array(
+		'Measurement time',
+		'vecwsm 1/0',
+		'vecwsm 1/1',
+		'vecwsm 2/0',
+		'vecwsm 2/1',
+		'vecwsm 3/0',
+		'vecwsm 3/1',
+		'vecwsm 4/0',
+		'vecwsm 4/1',
+		'vecwsm 5/0',
+		'vecwsm 5/1',
+		'vecwsm 6/0',
+		'vecwsm 6/1',
+		'vecwsm 7/0',
+		'vecwsm 7/1',
+		'vecwsm 8/0',
+		'vecwsm 8/1',
+		'vecwsm 9/0',
+		'vecwsm 9/1',
+		'vecwsm 10/0',
+		'vecwsm 10/1',
+		'vecwsm 11/0',
+		'vecwsm 11/1',
+		'vecwsm 12/0',
+		'vecwsm 12/1',
+		'vecwsm 13/0',
+		'vecwsm 13/1',
+		'vecwsm 14/0',
+		'vecwsm 14/1',
+		'vecwsm 15/0',
+		'vecwsm 15/1',
+		'vecwsm 16/0',
+		'vecwsm 16/1'
+	));
 
     foreach($table as $row) {
-        fputcsv($handle, array($row['val_1_0'], $row['val_1_1'], $row['val_2_0'], $row['created_at']));
+        fputcsv($handle, array(
+			$row['measurement_time'],
+			$row['val_1_0'],
+			$row['val_1_1'],
+			$row['val_2_0'],
+			$row['val_2_1'],
+			$row['val_3_0'],
+			$row['val_3_1'],
+			$row['val_4_0'],
+			$row['val_4_1'],
+			$row['val_5_0'],
+			$row['val_5_1'],
+			$row['val_6_0'],
+			$row['val_6_1'],
+			$row['val_7_0'],
+			$row['val_7_1'],
+			$row['val_8_0'],
+			$row['val_8_1'],
+			$row['val_9_0'],
+			$row['val_9_1'],
+			$row['val_10_0'],
+			$row['val_10_1'],
+			$row['val_11_0'],
+			$row['val_11_1'],
+			$row['val_12_0'],
+			$row['val_12_1'],
+			$row['val_13_0'],
+			$row['val_13_1'],
+			$row['val_14_0'],
+			$row['val_14_1'],
+			$row['val_15_0'],
+			$row['val_15_1'],
+			$row['val_16_0'],
+			$row['val_16_1']
+		));
     }
 
     fclose($handle);

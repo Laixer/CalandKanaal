@@ -19,6 +19,7 @@ class CreateMeasurementTable extends Migration {
 			$table->dateTime('recording_date');
 			$table->text('message')->nullable();
 			$table->string('ascloc', 256);
+			$table->string('name', 64)->nullable();
 			$table->boolean('vecwsm_1')->default('1');
 			$table->boolean('vecwsm_2')->default('1');
 			$table->boolean('vecwsm_3')->default('1');

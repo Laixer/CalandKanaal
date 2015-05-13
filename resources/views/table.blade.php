@@ -23,8 +23,11 @@
                       <label>Date</label>
                       <select id="date" class="form-control">
 						<option selected>(Select a date)</option>
-						<?php foreach($list as $key => $date){
-							echo "<option value=\"" . $key . "\">" . $date . "</option>";
+						<?php foreach($list as $row){
+							if ($row['name'])
+								echo "<option value=\"" . $row['id'] . "\">" . $row['recording_date'] . " (" . $row['name'] . ")" .  "</option>";
+							else
+								echo "<option value=\"" . $row['id'] . "\">" . $row['recording_date'] .  "</option>";
 						} ?>
                       </select>
                     </div>

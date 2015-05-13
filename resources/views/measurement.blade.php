@@ -13,6 +13,7 @@
                   <table class="table table-hover">
                     <tr>
                       <th>ID</th>
+                      <th>Name</th>
                       <th>Date</th>
                       <th>VecWSM 1</th>
                       <th>VecWSM 2</th>
@@ -35,6 +36,7 @@
 					<?php foreach($measurements as $measurement) { ?>
                     <tr>
                       <td data-id="<?php echo $measurement->id; ?>"><?php echo $measurement->id; ?></td>
+                      <td><?php echo $measurement->name; ?></td>
                       <td><?php echo $measurement->recording_date; ?></td>
                       <td><?php echo ($measurement->vecwsm_1 ? '<span class="label label-success">On</span>' : '<span class="label label-danger">Off</span>'); ?></td>
                       <td><?php echo ($measurement->vecwsm_2 ? '<span class="label label-success">On</span>' : '<span class="label label-danger">Off</span>'); ?></td>

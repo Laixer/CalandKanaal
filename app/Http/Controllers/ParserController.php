@@ -32,6 +32,7 @@ class ParserController extends Controller{
 		$measurement = new Measurement;
         $measurement->recording_date = date("Y-m-d H:i:s", $parser->getRecordDate());
 		$measurement->message = $request->input('message');
+		$measurement->name = $request->input('name');
 		$measurement->ascloc = $newloc;
 
 		if ($request->input('val_1') != 'on') $measurement->vecwsm_1 = false;
