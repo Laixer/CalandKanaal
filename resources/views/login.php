@@ -37,7 +37,7 @@
           </div>
         </form>
 
-        <!--<a href="#">I forgot my password</a><br>-->
+        <a href="mailto:info@smartbox-monitoring.com">I access my account</a><br>
 
       </div>
     </div>
