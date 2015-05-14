@@ -327,6 +327,8 @@ $app->get('logout', function() {
 
 $app->post('newmeasurement', 'App\Http\Controllers\ParserController@doNewmeasurement');
 
+$app->post('graph', 'App\Http\Controllers\ParserController@doUpdateMessage');
+
 $app->post('newuser', 'App\Http\Controllers\UserController@doNew');
 
 $app->post('profile', 'App\Http\Controllers\UserController@doNewPassword');
@@ -338,6 +340,10 @@ $app->get('/login', function() {
 $app->post('login', function(Request $request) {
 
 	if (Auth::attempt(['email' => $request->input('email'), 'password' => $request->input('password'), 'active' => 1])) {
+
+		Auth::user()->last_login = date("Y-m-d H:i:s");
+		Auth::user()->save();
+
 		return response()->json(array('error' => 0, 'location' => '/'));
     } else {
 		return response()->json(array('error' => 1));

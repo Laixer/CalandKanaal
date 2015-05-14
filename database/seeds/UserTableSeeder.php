@@ -33,7 +33,7 @@ class UserTableSeeder extends Seeder {
 		User::create(array(
 			'firstname' => 'Demo',
 			'lastname' => 'User',
-			'email' => 'guest@xxx',
+			'email' => 'guest@rotterdam.nl',
 			'password' => Hash::make('guest')
 		));
 		$this->command->info('Guest created');

@@ -7,6 +7,7 @@
             <div class="col-xs-12">
               <div class="box">
                 <div class="box-header">
+				  <i class="fa fa-th"></i>
                   <h3 class="box-title">Recorded measurements</h3>
                 </div><!-- /.box-header -->
                 <div class="box-body table-responsive no-padding">

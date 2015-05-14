@@ -16,11 +16,10 @@
                   </div>
                 <?php } ?>
 
-
-
               <div class="box box-primary">
-                <div class="box-header">
-                  <h3 class="box-title">Add new user</h3>
+                <div class="box-header with-border">
+				  <i class="fa fa-user-plus"></i>
+                  <h3 class="box-title">Add User</h3>
                 </div><!-- /.box-header -->
                 <!-- form start -->
                 <form role="form" action="" method="POST">

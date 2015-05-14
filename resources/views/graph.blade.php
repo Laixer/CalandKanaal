@@ -7,14 +7,10 @@
 
             <div class="col-xs-12">
 
-              <div class="box box-primary">
+              <div class="box box-success">
                 <div class="box-header with-border">
                   <i class="fa fa-bar-chart-o"></i>
                   <h3 class="box-title">Line Chart</h3>
-                  <div class="box-tools pull-right">
-                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                    <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-                  </div>
                 </div>
                 <div class="box-body">
 
@@ -57,25 +53,47 @@
                 </div>
               </div>
 
-			<div class="box box-primary">
-                <div class="box-header with-border">
-                  <i class="fa fa-bar-chart-o"></i>
-                  <h3 class="box-title">Description</h3>
-                  <div class="box-tools pull-right">
-                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                    <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-                  </div>
-                </div>
-                <div class="box-body">
+			<?php if (Auth::user()->priv == 'admin') { ?>
+			<form action="" role="form" name="frm-message" method="POST">
+				<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+				<input type="hidden" name="messid" id="messid" />
+				<div class="box box-success">
+					<div class="box-header with-border">
+						<i class="fa fa-comment-o"></i>
+						<h3 class="box-title">Description</h3>
+						<div class="box-tools pull-right">
+							<button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+							<button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+						</div>
+					</div>
+					<div class="box-body">
+						<div class="form-group">
+							<textarea name="message" id="compose-textarea" class="form-control" style="height: 300px"></textarea>
+						</div>
+					</div>
+					<div class="box-footer">
+						<button type="submit" class="btn btn-primary">Submit</button>
+					</div>
+				</div>
+			</form>
+			<?php } else {?>
+			<div class="box box-success">
+				<div class="box-header with-border">
+					<i class="fa fa-comment-o"></i>
+					<h3 class="box-title">Description</h3>
+					<div class="box-tools pull-right">
+						<button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+						<button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+					</div>
+				</div>
+				<div class="box-body">
+					<div id="message"></div>
+				</div>
+			</div>
+			<?php } ?>
 
-                  <div id="message"></div>
-                </div>
-              </div>
-
-
-            </div><!-- /.col -->
-
-          </div><!-- /.row -->
+		</div>
+	</div>
 @stop
 
 @section('script')
@@ -84,6 +102,7 @@
     <script src="../../plugins/flot/jquery.flot.min.js" type="text/javascript"></script>
     <script src="../../plugins/flot/jquery.flot.resize.min.js" type="text/javascript"></script>
     <script src="../../plugins/flot/jquery.flot.time.min.js" type="text/javascript"></script>
+	<script src="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js" type="text/javascript"></script>
 	<script type="text/javascript" language="javascript" src="../../plugins/flot/jquery.flot.axislabels.js"></script>
 	<script type="text/javascript">
 		$(function() {
@@ -178,9 +197,15 @@
 		}
 
 		$('#date').change(function(){
+			var $id = $(this).val();
 			$.getJSON("/graph/active_sensors/" + $(this).val(), function(data) {
 				$('#sensor').find('option').remove();
+				<?php if (Auth::user()->priv == 'admin') { ?>
+				$('#messid').val($id);
+				$('#compose-textarea').data("wysihtml5").editor.setValue(data.message);
+				<?php } else { ?>
 				$('#message').html(data.message);
+				<?php } ?>
 
 				$('#reservationtime').daterangepicker({
 					minDate: new Date(data.begin*1000),
@@ -210,6 +235,10 @@
 			$('#reservationtime').val('');
 			drawFlot();
 		});
+
+		<?php if (Auth::user()->priv == 'admin') { ?>
+		$("#compose-textarea").wysihtml5();
+		<?php } ?>
 	});
 	</script>
 @stop

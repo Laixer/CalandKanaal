@@ -17,9 +17,9 @@
     <div class="login-box">
       <div class="login-logo">
         <a href="javascript:void(0);"><b>Admin</b>LTE</a>
-      </div><!-- /.login-logo -->
+      </div>
       <div class="login-box-body">
-        <p class="login-box-msg">Sign in to start your session</p>
+        <p class="login-box-msg">Sign in to start your session </p>
         <form action="#" method="post" id="frm-login">
          <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
           <div class="form-group has-feedback">
@@ -31,24 +31,16 @@
             <span class="glyphicon glyphicon-lock form-control-feedback"></span>
           </div>
           <div class="row">
-            <div class="col-xs-8">
-              <div class="checkbox icheck">
-                <label>
-                  <input type="checkbox"> Remember Me
-                </label>
-              </div>
-            </div><!-- /.col -->
-            <div class="col-xs-4">
+            <div class="col-xs-4 pull-right">
               <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
-            </div><!-- /.col -->
+            </div>
           </div>
         </form>
 
-        <a href="#">I forgot my password</a><br>
-        <!--<a href="register.html" class="text-center">Register a new membership</a>-->
+        <!--<a href="#">I forgot my password</a><br>-->
 
-      </div><!-- /.login-box-body -->
-    </div><!-- /.login-box -->
+      </div>
+    </div>
 
     <script src="../../plugins/jQuery/jQuery-2.1.3.min.js"></script>
     <script src="../../bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
@@ -63,14 +55,14 @@
 			$('#frm-login').submit(function(e){
 				e.preventDefault();
 				$('input').prop('disabled', true);
-				$('button[type="submit"]').text('Signing in');
+				$('button[type="submit"]').text('Signing in').addClass('disabled');
 				$.post( "/login", {email:$('input[name="email"').val(),password:$('input[name="password"').val(),_token:$('input[name="_token"').val()}, function(data){
 					var $rs = data;
 					if ($rs.error) {
 						$('.login-box-msg').html('<font color="red">Email/password invalid</font>');
 						$('input').prop('disabled', false);
 						$('input[name="password"').val("");
-						$('button[type="submit"]').text('Sign In');
+						$('button[type="submit"]').text('Sign In').removeClass('disabled');
 					} else {
 						 window.location.replace($rs.location);
 					}

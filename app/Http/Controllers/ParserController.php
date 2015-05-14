@@ -96,4 +96,13 @@ class ParserController extends Controller{
 		return redirect()->back()->with('success', 'File is uploaded and parsed');
 	}
 
+	public function doUpdateMessage(Request $request) {
+
+		$measurement = Measurement::find($request->input('messid'));
+		$measurement->message = $request->input('message');
+		$measurement->save();
+
+		return redirect()->back()->with('success', 'Message updated');
+	}
+
 }

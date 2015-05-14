@@ -5,13 +5,14 @@
 @section('content')
 		<div class="row">
 			<div class="col-xs-12">
-              <div class="box">
-                <div class="box-header">
+              <div class="box box-primary">
+                <div class="box-header with-border">
+				 <i class="fa fa-table"></i>
                   <h3 class="box-title">Sensor overview</h3>
 					<div class="box-tools">
                       <div class="btn-group">
-                          <button id="excsv" type="button" class="btn btn-default disabled">Export CSV</button>
-                          <button id="exasc" type="button" class="btn btn-default disabled">Export ASC</button>
+                          <button id="excsv" type="button" class="btn btn-default btn-sm disabled">Export CSV</button>
+                          <button id="exasc" type="button" class="btn btn-default btn-sm disabled">Export ASC</button>
                         </div>
 					</div>
                 </div><!-- /.box-header -->

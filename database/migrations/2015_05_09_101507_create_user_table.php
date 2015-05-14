@@ -21,6 +21,7 @@ class CreateUserTable extends Migration {
 			$table->string('email', 100)->unique();
 			$table->string('password', 64);
 			$table->boolean('active')->default('1');
+			$table->dateTime('last_login')->nullable();
 			$table->enum('priv', ['user', 'admin'])->default('user');
 		});
 	}

@@ -3,13 +3,27 @@
 @section('title', 'Users')
 
 @section('content')
+				<div style="display: none" class="modal-content" id="dialog">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title">Delete user</h4>
+                  </div>
+                  <div class="modal-body">
+                    <p>Do you want to delete this user?</p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-danger">Delete</button>
+                  </div>
+                </div>
           <div class="row">
             <div class="col-xs-12">
-              <div class="box">
-                <div class="box-header">
+              <div class="box box-warning">
+                <div class="box-header with-border">
+				  <i class="fa fa-user"></i>
                   <h3 class="box-title">User accounts</h3>
                   <div class="box-tools">
-                      <a href="newuser" class="btn btn-sm  btn-success  pull-right">New user</a>
+                      <a href="newuser" class="btn btn-sm  btn-success  pull-right"><i class="fa fa-user-plus"></i> New user</a>
                   </div>
                 </div><!-- /.box-header -->
                 <div class="box-body table-responsive no-padding">
@@ -20,6 +34,7 @@
                       <th>Email</th>
                       <th>Role</th>
                       <th>Status</th>
+                      <th>Last Login</th>
                       <th>Actions</th>
                     </tr>
 					<?php foreach($users as $user) { ?>
@@ -33,6 +48,7 @@
 					  <?php } else { ?>
 					  <td><span class="label label-danger">Disabled</span></td>
 					  <?php } ?>
+					  <td><?php echo $user->last_login; ?></td>
                       <td>
 							<?php if ($user->active) { ?>
 							<span class="btn-group">
@@ -57,11 +73,14 @@
               </div><!-- /.box -->
             </div>
           </div>
-@stop
+ @stop
 
 @section('script')
 	<script>
 		$(document).ready(function(){
+			$( "#dialog" ).dialog({
+				autoOpen: false
+			});
 			$('.userdel').click(function(e){
 				e.preventDefault();
 				var $cthis = $(this);
@@ -96,10 +115,8 @@
                 var $cthis = $(this);
                 var $id = $cthis.closest('tr').find('td:first-child').attr('data-id');
                 $.post("user/resetpassword",{userid: $id, _token:"<?php echo csrf_token(); ?>"}, function(data) {
-                 if (data.success) {
-                        //$cthis.removeClass('btn-success').addClass('btn-danger').text('Disable');
-						alert("Password reset to: ABC@123");
-                    }
+                 if (data.success)
+					alert("Password reset to: ABC@123");
                 });
             });
 		});

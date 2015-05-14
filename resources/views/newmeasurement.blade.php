@@ -24,8 +24,9 @@
                   </div>
 				<?php } ?>
 
-              <div class="box box-primary">
-                <div class="box-header">
+              <div class="box box-danger">
+                <div class="box-header with-border">
+				  <i class="fa fa-edit"></i>
                   <h3 class="box-title">New Measurement <?php echo Session::get('error'); ?></h3>
                 </div><!-- /.box-header -->
                 <!-- form start -->
@@ -41,7 +42,7 @@
                   <div class="form-group">
                     <label for="compose-textarea">Description</label>
                     <textarea name="message" id="compose-textarea" class="form-control" style="height: 300px">
-                      <h1><u>Project description</u></h1>
+                      <h1>Project description</h1>
                       <h4>Subheading</h4>
 					<p>Some text ... </p>
                       <ul>
@@ -51,11 +52,15 @@
                       <p>Note</p>
                     </textarea>
                   </div>
-                    <div class="form-group">
-                      <label for="exampleInputFile">File input</label>
-                      <input name="ascfile" type="file" id="exampleInputFile">
-                      <p class="help-block">Upload the .asc file</p>
+
+					<div class="form-group">
+                    <div class="btn btn-default btn-file">
+                      <i class="fa fa-paperclip"></i> Add ASC file
+                      <input type="file" name="ascfile">
                     </div>
+                    <p class="help-block">Max. 1GB</p>
+                  </div>
+
 					<div class="row margin"><div class="col-sm-6">
 					 <div class="input-group">
                         <span class="input-group-addon">
