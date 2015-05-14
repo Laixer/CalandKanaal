@@ -125,7 +125,7 @@ function get_gravatar( $email, $s = 80, $d = 'mm', $r = 'g', $img = false, $atts
       </div>
       <footer class="main-footer">
         <div class="pull-right hidden-xs">
-          <b>Version</b> 1.0
+          <b>Version</b> <?php echo env('APP_VERSION'); ?>
         </div>
         <strong>Copyright &copy; <?php echo date("Y"); ?>.</strong> All rights reserved.
       </footer>
