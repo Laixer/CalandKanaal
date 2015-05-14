@@ -106,22 +106,22 @@ $app->get('table/active_sensors/{id}', function($id) {
 
 	$arr = array();
 	$list = Measurement::find($id);
-	if ($list->vecwsm_1) array_push($arr, 'vecwsm_1');
-	if ($list->vecwsm_2) array_push($arr, 'vecwsm_2');
-	if ($list->vecwsm_3) array_push($arr, 'vecwsm_3');
-	if ($list->vecwsm_4) array_push($arr, 'vecwsm_4');
-	if ($list->vecwsm_5) array_push($arr, 'vecwsm_5');
-	if ($list->vecwsm_6) array_push($arr, 'vecwsm_6');
-	if ($list->vecwsm_7) array_push($arr, 'vecwsm_7');
-	if ($list->vecwsm_8) array_push($arr, 'vecwsm_8');
-	if ($list->vecwsm_9) array_push($arr, 'vecwsm_9');
-	if ($list->vecwsm_10) array_push($arr, 'vecwsm_10');
-	if ($list->vecwsm_11) array_push($arr, 'vecwsm_11');
-	if ($list->vecwsm_12) array_push($arr, 'vecwsm_12');
-	if ($list->vecwsm_13) array_push($arr, 'vecwsm_13');
-	if ($list->vecwsm_14) array_push($arr, 'vecwsm_14');
-	if ($list->vecwsm_15) array_push($arr, 'vecwsm_15');
-	if ($list->vecwsm_16) array_push($arr, 'vecwsm_16');
+	if ($list->vecwsm_1) array_push($arr, array('VecWSM 1', $list->vecwsm_1_name, 1));
+	if ($list->vecwsm_2) array_push($arr, array('VecWSM 2', $list->vecwsm_2_name, 2));
+	if ($list->vecwsm_3) array_push($arr, array('VecWSM 3', $list->vecwsm_3_name, 3));
+	if ($list->vecwsm_4) array_push($arr, array('VecWSM 4', $list->vecwsm_4_name, 4));
+	if ($list->vecwsm_5) array_push($arr, array('VecWSM 5', $list->vecwsm_5_name, 5));
+	if ($list->vecwsm_6) array_push($arr, array('VecWSM 6', $list->vecwsm_6_name, 6));
+	if ($list->vecwsm_7) array_push($arr, array('VecWSM 7', $list->vecwsm_7_name, 7));
+	if ($list->vecwsm_8) array_push($arr, array('VecWSM 8', $list->vecwsm_8_name, 8));
+	if ($list->vecwsm_9) array_push($arr, array('VecWSM 9', $list->vecwsm_9_name, 9));
+	if ($list->vecwsm_10) array_push($arr, array('VecWSM 10', $list->vecwsm_10_name, 10));
+	if ($list->vecwsm_11) array_push($arr, array('VecWSM 11', $list->vecwsm_11_name, 11));
+	if ($list->vecwsm_12) array_push($arr, array('VecWSM 12', $list->vecwsm_12_name, 12));
+	if ($list->vecwsm_13) array_push($arr, array('VecWSM 13', $list->vecwsm_13_name, 13));
+	if ($list->vecwsm_14) array_push($arr, array('VecWSM 14', $list->vecwsm_14_name, 14));
+	if ($list->vecwsm_15) array_push($arr, array('VecWSM 15', $list->vecwsm_15_name, 15));
+	if ($list->vecwsm_16) array_push($arr, array('VecWSM 16', $list->vecwsm_16_name, 16));
 
 	if (Auth::check())
         return response()->json($arr);
@@ -132,10 +132,8 @@ $app->get('table/active_sensors/{id}', function($id) {
 $app->get('table/sensors/{id}/{sensor}', function($id, $sensor) {
 	$tarr = array();
 
-	$name = explode('_', $sensor);
-
-	$sensname_1 = 'VecWSM '.$name[1].'/0';
-	$sensname_2 = 'VecWSM '.$name[1].'/1';
+	$sensname_1 = 'VecWSM '.$sensor.'/0';
+	$sensname_2 = 'VecWSM '.$sensor.'/1';
 
 	$columns = array(
 		array("sTitle" => "Measurement Time", "aTargets" => 0),
@@ -145,7 +143,7 @@ $app->get('table/sensors/{id}/{sensor}', function($id, $sensor) {
 
 	$rows = Sensor::where('measurement_id','=',$id)->get();
 	foreach($rows as $row) {
-		$arr = array($row->measurement_time, $row->{'val_'.$name[1].'_0'}, $row->{'val_'.$name[1].'_1'});
+		$arr = array($row->measurement_time, $row->{'val_'.$sensor.'_0'}, $row->{'val_'.$sensor.'_1'});
 		array_push($tarr, $arr);
 	}
 	return response()->json(array("columns" => $columns, "data"=> $tarr));
@@ -272,22 +270,22 @@ $app->get('graph/active_sensors/{id}', function($id) {
 
 	$arr = array();
 	$list = Measurement::find($id);
-	if ($list->vecwsm_1) array_push($arr, 'vecwsm_1');
-	if ($list->vecwsm_2) array_push($arr, 'vecwsm_2');
-	if ($list->vecwsm_3) array_push($arr, 'vecwsm_3');
-	if ($list->vecwsm_4) array_push($arr, 'vecwsm_4');
-	if ($list->vecwsm_5) array_push($arr, 'vecwsm_5');
-	if ($list->vecwsm_6) array_push($arr, 'vecwsm_6');
-	if ($list->vecwsm_7) array_push($arr, 'vecwsm_7');
-	if ($list->vecwsm_8) array_push($arr, 'vecwsm_8');
-	if ($list->vecwsm_9) array_push($arr, 'vecwsm_9');
-	if ($list->vecwsm_10) array_push($arr, 'vecwsm_10');
-	if ($list->vecwsm_11) array_push($arr, 'vecwsm_11');
-	if ($list->vecwsm_12) array_push($arr, 'vecwsm_12');
-	if ($list->vecwsm_13) array_push($arr, 'vecwsm_13');
-	if ($list->vecwsm_14) array_push($arr, 'vecwsm_14');
-	if ($list->vecwsm_15) array_push($arr, 'vecwsm_15');
-	if ($list->vecwsm_16) array_push($arr, 'vecwsm_16');
+    if ($list->vecwsm_1) array_push($arr, array('VecWSM 1', $list->vecwsm_1_name, 1));
+    if ($list->vecwsm_2) array_push($arr, array('VecWSM 2', $list->vecwsm_2_name, 2));
+    if ($list->vecwsm_3) array_push($arr, array('VecWSM 3', $list->vecwsm_3_name, 3));
+    if ($list->vecwsm_4) array_push($arr, array('VecWSM 4', $list->vecwsm_4_name, 4));
+    if ($list->vecwsm_5) array_push($arr, array('VecWSM 5', $list->vecwsm_5_name, 5));
+    if ($list->vecwsm_6) array_push($arr, array('VecWSM 6', $list->vecwsm_6_name, 6));
+    if ($list->vecwsm_7) array_push($arr, array('VecWSM 7', $list->vecwsm_7_name, 7));
+    if ($list->vecwsm_8) array_push($arr, array('VecWSM 8', $list->vecwsm_8_name, 8));
+    if ($list->vecwsm_9) array_push($arr, array('VecWSM 9', $list->vecwsm_9_name, 9));
+    if ($list->vecwsm_10) array_push($arr, array('VecWSM 10', $list->vecwsm_10_name, 10));
+    if ($list->vecwsm_11) array_push($arr, array('VecWSM 11', $list->vecwsm_11_name, 11));
+    if ($list->vecwsm_12) array_push($arr, array('VecWSM 12', $list->vecwsm_12_name, 12));
+    if ($list->vecwsm_13) array_push($arr, array('VecWSM 13', $list->vecwsm_13_name, 13));
+    if ($list->vecwsm_14) array_push($arr, array('VecWSM 14', $list->vecwsm_14_name, 14));
+    if ($list->vecwsm_15) array_push($arr, array('VecWSM 15', $list->vecwsm_15_name, 15));
+    if ($list->vecwsm_16) array_push($arr, array('VecWSM 16', $list->vecwsm_16_name, 16));
 
 	$endtime = Sensor::where('measurement_id','=',$id)->orderBy('measurement_time', 'desc')->first()['measurement_time'];;
 	if (Auth::check())
@@ -299,10 +297,8 @@ $app->get('graph/active_sensors/{id}', function($id) {
 $app->get('graph/sensors/{id}/{sensor}', function($id, $sensor) {
     $tarr = array();
 
-    $name = explode('_', $sensor);
-
-    $sensname_1 = 'VecWSM '.$name[1].'/0';
-    $sensname_2 = 'VecWSM '.$name[1].'/1';
+    $sensname_1 = 'VecWSM '.$sensor.'/0';
+    $sensname_2 = 'VecWSM '.$sensor.'/1';
 
     $columns = array(
 	    array("sTitle" => "Measurement Time", "aTargets" => 0),
@@ -312,7 +308,7 @@ $app->get('graph/sensors/{id}/{sensor}', function($id, $sensor) {
 
     $rows = Sensor::where('measurement_id','=',$id)->get();
     foreach ($rows as $row) {
-        $arr = array(strtotime($row->measurement_time), $row->{'val_'.$name[1].'_0'}, $row->{'val_'.$name[1].'_1'});
+        $arr = array(strtotime($row->measurement_time), $row->{'val_'.$sensor.'_0'}, $row->{'val_'.$sensor.'_1'});
         array_push($tarr, $arr);
     }
     return response()->json(array("columns" => $columns, "data"=> $tarr));

@@ -110,7 +110,7 @@
 				$.ajax({
 					"dataType": 'json',
 					"type": "GET",
-					"url": "/graph/sensors/" + $('#date').val() +"/" + $('#sensor').val(),
+					"url": "/graph/sensors/" + $('#date').val() +"/" + $('#sensor :selected').attr('data-id'),
 					"success": function (data) {
 
 					var vec1 = [];
@@ -121,7 +121,7 @@
 					}
 
 					var line_data1 = {
-                    	label: data.columns[1].sTitle,
+						label: data.columns[1].sTitle,
 						data: vec1,
 						color: "#3c8dbc"
 					};
@@ -226,10 +226,13 @@
 
 				var items = [];
 				$.each(data.data, function(key, val) {
-					$('#sensor').append( "<option id='" + key + "'>" + val + "</option>" );
+	                if (val[1])
+    	                $('#sensor').append("<option id='" + key + "' data-id='" + val[2] + "'>" + val[0] + " (" + val[1] + ")" + "</option>");
+        	        else
+            	        $('#sensor').append("<option id='" + key + "' data-id='" + val[2] + "'>" + val[0] + "</option>");
 				});
 			});
-		});
+ 		});
 
 		$('#sensor').change(function(){
 			$('#reservationtime').val('');

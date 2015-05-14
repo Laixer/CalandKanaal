@@ -67,10 +67,13 @@
 		$('#sensor').find('option').remove();
 		$('#excsv').removeClass('disabled');
 		$('#exasc').removeClass('disabled');
-		  var items = [];
-			  $.each(data, function( key, val ) {
-			   $('#sensor').append( "<option id='" + key + "'>" + val + "</option>" );
-			  });
+		var items = [];
+			$.each(data, function(key, val) {
+				if (val[1])
+					$('#sensor').append("<option id='" + key + "' data-id='" + val[2] + "'>" + val[0] + " (" + val[1] + ")" + "</option>");
+				else
+					$('#sensor').append("<option id='" + key + "' data-id='" + val[2] + "'>" + val[0] + "</option>");
+			});
 		});
 	  });
 	});
@@ -80,10 +83,10 @@ $(function () {
     $.ajax({
         "dataType": 'json',
         "type": "GET",
-        "url": "/table/sensors/" + $('#date').val() +"/" + $('#sensor').val(),
+        "url": "/table/sensors/" + $('#date').val() +"/" + $('#sensor :selected').attr('data-id'),
         "success": function (dataStr) {
 			if (table) {
-				table.ajax.url('/table/sensors/' + $('#date').val() + '/' + $('#sensor').val()).load();
+				table.ajax.url('/table/sensors/' + $('#date').val() + '/' + $('#sensor :selected').attr('data-id')).load();
 			} else {
             table = $('#example2').DataTable({
                 "aaData": dataStr.data,

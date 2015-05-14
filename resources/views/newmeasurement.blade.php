@@ -60,108 +60,106 @@
                     </div>
                     <p class="help-block">Max. 1GB</p>
                   </div>
-
 					<div class="row margin"><div class="col-sm-6">
 					 <div class="input-group">
                         <span class="input-group-addon">
                           <input name="val_1" type="checkbox" checked>&nbsp;&nbsp;VecWSM 1</span>
-                        <input type="text" class="form-control" />
+                        <input name="val_1_name" type="text" class="form-control" />
                       </div>
 					<br />
 					 <div class="input-group">
                         <span class="input-group-addon">
                           <input name="val_2" type="checkbox" checked>&nbsp;&nbsp;VecWSM 2</span>
-                        <input type="text" class="form-control" />
+                        <input name="val_2_name" type="text" class="form-control" />
                       </div>
 					<br />
 					 <div class="input-group">
                         <span class="input-group-addon">
                           <input name="val_3" type="checkbox" checked>&nbsp;&nbsp;VecWSM 3</span>
-                        <input type="text" class="form-control" />
+                        <input name="val_3_name" type="text" class="form-control" />
                       </div>
 					<br />
 					 <div class="input-group">
                         <span class="input-group-addon">
                           <input name="val_4" type="checkbox" checked>&nbsp;&nbsp;VecWSM 4</span>
-                        <input type="text" class="form-control" />
+                        <input name="val_4_name" type="text" class="form-control" />
                       </div>
 					<br />
 					 <div class="input-group">
                         <span class="input-group-addon">
                           <input name="val_5" type="checkbox" checked>&nbsp;&nbsp;VecWSM 5</span>
-                        <input type="text" class="form-control" />
+                        <input name="val_5_name" type="text" class="form-control" />
                       </div>
 					<br />
 					 <div class="input-group">
                         <span class="input-group-addon">
                           <input name="val_6" type="checkbox" checked>&nbsp;&nbsp;VecWSM 6</span>
-                        <input type="text" class="form-control" />
+                        <input name="val_6_name" type="text" class="form-control" />
                       </div>
 					<br />
 					 <div class="input-group">
                         <span class="input-group-addon">
                           <input name="val_7" type="checkbox" checked>&nbsp;&nbsp;VecWSM 7</span>
-                        <input type="text" class="form-control" />
+                        <input name="val_7_name" type="text" class="form-control" />
                       </div>
 					<br />
 					 <div class="input-group">
                         <span class="input-group-addon">
                           <input name="val_8" type="checkbox" checked>&nbsp;&nbsp;VecWSM 8</span>
-                        <input type="text" class="form-control" />
+                        <input name="val_8_name" type="text" class="form-control" />
                       </div>
 				</div>
 				<div class="col-sm-6">
 					 <div class="input-group">
                         <span class="input-group-addon">
                           <input name="val_9" type="checkbox" checked>&nbsp;&nbsp;VecWSM 9</span>
-                        <input type="text" class="form-control" />
+                        <input name="val_9_name" type="text" class="form-control" />
                       </div>
 					<br />
 					 <div class="input-group">
                         <span class="input-group-addon">
                           <input name="val_10" type="checkbox" checked>&nbsp;&nbsp;VecWSM 10</span>
-                        <input type="text" class="form-control" />
+                        <input name="val_10_name" type="text" class="form-control" />
                       </div>
 					<br />
 					 <div class="input-group">
                         <span class="input-group-addon">
                           <input name="val_11" type="checkbox" checked>&nbsp;&nbsp;VecWSM 11</span>
-                        <input type="text" class="form-control" />
+                        <input name="val_11_name" type="text" class="form-control" />
                       </div>
 					<br />
 					 <div class="input-group">
                         <span class="input-group-addon">
                           <input name="val_12" type="checkbox" checked>&nbsp;&nbsp;VecWSM 12</span>
-                        <input type="text" class="form-control" />
+                        <input name="val_12_name" type="text" class="form-control" />
                       </div>
 					<br />
 					 <div class="input-group">
                         <span class="input-group-addon">
                           <input name="val_13" type="checkbox" checked>&nbsp;&nbsp;VecWSM 13</span>
-                        <input type="text" class="form-control" />
+                        <input name="val_13_name" type="text" class="form-control" />
                       </div>
 					<br />
 					 <div class="input-group">
                         <span class="input-group-addon">
                           <input name="val_14" type="checkbox" checked>&nbsp;&nbsp;VecWSM 15</span>
-                        <input type="text" class="form-control" />
+                        <input name="val_14_name" type="text" class="form-control" />
                       </div>
 					<br />
 					 <div class="input-group">
                         <span class="input-group-addon">
                           <input name="val_15" type="checkbox" checked>&nbsp;&nbsp;VecWSM 15</span>
-                        <input type="text" class="form-control" />
+                        <input name="val_15_name" type="text" class="form-control" />
                       </div>
 					<br />
 					 <div class="input-group">
                         <span class="input-group-addon">
                           <input name="val_16" type="checkbox" checked>&nbsp;&nbsp;VecWSM 16</span>
-                        <input type="text" class="form-control" />
+                        <input name="val_16_name" type="text" class="form-control" />
                       </div>
 				</div>
 				</div>
-                  </div><!-- /.box-body -->
-
+                  </div>
                   <div class="box-footer">
                     <button type="submit" class="btn btn-primary">Submit</button>
                   </div>
@@ -177,6 +175,13 @@
 	<script>
 		$(document).ready(function(){
 			$("#compose-textarea").wysihtml5();
+			$('input[type="checkbox"]').change(function(){
+				$el = $(this);
+				if ($el.prop('checked'))
+					$el.closest('div').find('input[type="text"]').prop('disabled', false);
+				else
+					$el.closest('div').find('input[type="text"]').prop('disabled', true);
+			});
 		});
 	</script>
 @stop

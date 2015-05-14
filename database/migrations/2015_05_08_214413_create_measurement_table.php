@@ -36,6 +36,22 @@ class CreateMeasurementTable extends Migration {
 			$table->boolean('vecwsm_14')->default('1');
 			$table->boolean('vecwsm_15')->default('1');
 			$table->boolean('vecwsm_16')->default('1');
+			$table->string('vecwsm_1_name', 64)->nullable();
+			$table->string('vecwsm_2_name', 64)->nullable();
+			$table->string('vecwsm_3_name', 64)->nullable();
+			$table->string('vecwsm_4_name', 64)->nullable();
+			$table->string('vecwsm_5_name', 64)->nullable();
+			$table->string('vecwsm_6_name', 64)->nullable();
+			$table->string('vecwsm_7_name', 64)->nullable();
+			$table->string('vecwsm_8_name', 64)->nullable();
+			$table->string('vecwsm_9_name', 64)->nullable();
+			$table->string('vecwsm_10_name', 64)->nullable();
+			$table->string('vecwsm_11_name', 64)->nullable();
+			$table->string('vecwsm_12_name', 64)->nullable();
+			$table->string('vecwsm_13_name', 64)->nullable();
+			$table->string('vecwsm_14_name', 64)->nullable();
+			$table->string('vecwsm_15_name', 64)->nullable();
+			$table->string('vecwsm_16_name', 64)->nullable();
 		});
 	}
 

@@ -52,6 +52,23 @@ class ParserController extends Controller{
 		if ($request->input('val_15') != 'on') $measurement->vecwsm_15 = false;
 		if ($request->input('val_16') != 'on') $measurement->vecwsm_16 = false;
 
+		$measurement->vecwsm_1_name = $request->input('val_1_name');
+		$measurement->vecwsm_2_name = $request->input('val_2_name');
+		$measurement->vecwsm_3_name = $request->input('val_3_name');
+		$measurement->vecwsm_4_name = $request->input('val_4_name');
+		$measurement->vecwsm_5_name = $request->input('val_5_name');
+		$measurement->vecwsm_6_name = $request->input('val_6_name');
+		$measurement->vecwsm_7_name = $request->input('val_7_name');
+		$measurement->vecwsm_8_name = $request->input('val_8_name');
+		$measurement->vecwsm_9_name = $request->input('val_9_name');
+		$measurement->vecwsm_10_name = $request->input('val_10_name');
+		$measurement->vecwsm_11_name = $request->input('val_11_name');
+		$measurement->vecwsm_12_name = $request->input('val_12_name');
+		$measurement->vecwsm_13_name = $request->input('val_13_name');
+		$measurement->vecwsm_14_name = $request->input('val_14_name');
+		$measurement->vecwsm_15_name = $request->input('val_15_name');
+		$measurement->vecwsm_16_name = $request->input('val_16_name');
+
         $measurement->save();
 
 		foreach($parser->getAllRows() as $row) {
