@@ -121,13 +121,13 @@
 					}
 
 					var line_data1 = {
-						label: data.columns[1].sTitle,
+						label: "Versnelling (m/s<sup>2</sup>)",
 						data: vec1,
 						color: "#3c8dbc"
 					};
 
 					var line_data2 = {
-						label: data.columns[2].sTitle,
+						label: "Waterspanning (kPa)",
 						data: vec2,
 						color: "#00c0ef"
 					};

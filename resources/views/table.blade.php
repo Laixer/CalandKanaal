@@ -44,8 +44,8 @@
                     <thead>
                       <tr>
                         <th>Measurement Time</th>
-                        <th>Sensor 0</th>
-                        <th>Sensor 1</th>
+                        <th>Versnelling (m/s<sup>2</sup>)</th>
+                        <th>Waterspanning (kPa	)</th>
                       </tr>
                     </thead>
 
@@ -89,8 +89,8 @@ $(function () {
 				table.ajax.url('/table/sensors/' + $('#date').val() + '/' + $('#sensor :selected').attr('data-id')).load();
 			} else {
             table = $('#example2').DataTable({
-                "aaData": dataStr.data,
-                "aoColumns": dataStr.columns
+                "aaData": dataStr.data
+                //"aoColumns": dataStr.columns
             });
 			}
         }
