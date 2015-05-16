@@ -47,7 +47,7 @@
 				</div>
 			</div>
 
-                  <div id="line-chart" style="height: 300px;"></div>
+                  <div id="line-chart" style="height: 300px;text-align: center;"></div>
 				 <input type="hidden" id="begintime" />
 				 <input type="hidden" id="endtime" />
                 </div>
@@ -107,6 +107,7 @@
 	<script type="text/javascript">
 		$(function() {
 			function drawFlot(begin, end) {
+				$('#line-chart').append('<img src="/dist/img/hex-loader.gif" />');
 				$.ajax({
 					"dataType": 'json',
 					"type": "GET",
