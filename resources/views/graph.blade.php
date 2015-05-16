@@ -116,9 +116,10 @@
 
 					var vec1 = [];
 					var vec2 = [];
+					var vec3 = [];
 					for(var i=0; i<data.data.length; i++){
-						vec1.push([data.data[i][0]*1000, data.data[i][1]])
-						vec2.push([data.data[i][0]*1000, data.data[i][2]])
+						vec1.push([data.data[i][0]*1000, data.data[i][1]]);
+						vec2.push([data.data[i][0]*1000, data.data[i][2]]);
 					}
 
 					var line_data1 = {
@@ -131,6 +132,11 @@
 						label: "Waterspanning (kPa)",
 						data: vec2,
 						color: "#00c0ef"
+					};
+
+					var line_data3 = {
+						data: vec3,
+						color: "#ff0000"
 					};
 
 					var begintime;
@@ -158,7 +164,7 @@
 						},
 						lines: {
 							fill: false,
-							color: ["#3c8dbc", "#f56954"]
+							color: ["#3c8dbc", "#f56954", "#ff0000"]
 						},
 						yaxis: {
 							show: true
@@ -227,10 +233,10 @@
 
 				var items = [];
 				$.each(data.data, function(key, val) {
-	                if (val[1])
-    	                $('#sensor').append("<option id='" + key + "' data-id='" + val[2] + "'>" + val[0] + " (" + val[1] + ")" + "</option>");
-        	        else
-            	        $('#sensor').append("<option id='" + key + "' data-id='" + val[2] + "'>" + val[0] + "</option>");
+				if (val[1])
+					$('#sensor').append("<option id='" + key + "' data-id='" + val[2] + "'>" + val[0] + " (" + val[1] + ")" + "</option>");
+				else
+					$('#sensor').append("<option id='" + key + "' data-id='" + val[2] + "'>" + val[0] + "</option>");
 				});
 			});
  		});
