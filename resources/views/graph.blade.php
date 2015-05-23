@@ -42,6 +42,11 @@
                         <i class="fa fa-clock-o"></i>
                       </div>
                       <input type="text" class="form-control pull-right" id="reservationtime">
+                      <?php if (Auth::user()->priv == 'admin') { ?>
+     <span class="input-group-btn">
+        <button id="split" class="btn btn-default disabled" type="button">Save</button>
+      </span>
+      				<?php } ?>
                     </div><!-- /.input group -->
                   </div>
 				</div>
@@ -105,6 +110,8 @@
 	<script src="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js" type="text/javascript"></script>
 	<script type="text/javascript" language="javascript" src="../../plugins/flot/jquery.flot.axislabels.js"></script>
 	<script type="text/javascript">
+		var _begin;
+		var _end;
 		$(function() {
 			function drawFlot(begin, end) {
 				$('#line-chart').append('<img src="/dist/img/hex-loader.gif" />');
@@ -141,12 +148,22 @@
 
 					var begintime;
 					if (!begin)
-						begintime = (new Date($('#begintime').val() * 1000)).getTime();
+						if (data.begin) {
+							begintime = data.begin;
+							console.log('begin '+begintime);
+						}
+						else
+							begintime = (new Date($('#begintime').val() * 1000)).getTime();
 					else
 						begintime = begin.getTime();
 					var endtime;
 					if (!end)
-						endtime = (new Date($('#endtime').val() * 1000)).getTime();
+						if (data.end) {
+							endtime = data.end;
+							console.log('end '+endtime);
+						}
+						else
+							endtime = (new Date($('#endtime').val() * 1000)).getTime();
 					else
 						endtime = end.getTime();
 
@@ -226,6 +243,9 @@
 					format: 'DD-MM-YYYY HH:mm:ss'
 				}, function(start, end) {
 					drawFlot(start.toDate(), end.toDate());
+					$('#split').removeClass('disabled');
+					_begin = start.toDate();
+					_end = end.toDate();
 				});
 
 				$('#begintime').val(data.begin);
@@ -249,6 +269,17 @@
 		<?php if (Auth::user()->priv == 'admin') { ?>
 		$("#compose-textarea").wysihtml5();
 		<?php } ?>
+
+		$('#split').click(function(e){
+			e.preventDefault();
+			$.post("/graph/split", {
+				messid: $('#date').val(),
+				sensorid: $('#sensor :selected').attr('data-id'),
+				begin: _begin.getTime(),
+				end: _end.getTime(),
+				_token:"<?php echo csrf_token(); ?>"
+			});
+		});
 	});
 	</script>
 @stop

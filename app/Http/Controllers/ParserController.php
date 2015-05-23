@@ -30,7 +30,7 @@ class ParserController extends Controller{
 		$parser = new ASCParser($newloc);
 
 		$measurement = new Measurement;
-        $measurement->recording_date = date("Y-m-d H:i:s", $parser->getRecordDate());
+		$measurement->recording_date = date("Y-m-d H:i:s", $parser->getRecordDate());
 		$measurement->message = $request->input('message');
 		$measurement->name = $request->input('name');
 		$measurement->ascloc = $newloc;
@@ -69,7 +69,7 @@ class ParserController extends Controller{
 		$measurement->vecwsm_15_name = $request->input('val_15_name');
 		$measurement->vecwsm_16_name = $request->input('val_16_name');
 
-        $measurement->save();
+		$measurement->save();
 
 		foreach($parser->getAllRows() as $row) {
             $sensor = new Sensor;
@@ -122,4 +122,13 @@ class ParserController extends Controller{
 		return redirect()->back()->with('success', 'Message updated');
 	}
 
+	public function doSplit(Request $request) {
+
+		$measurement = Measurement::find($request->input('messid'));
+		$measurement->{'vecwsm_'.$request->input('sensorid').'_begin'} = date("Y-m-d H:i:s", ($request->input('begin')/1000));
+		$measurement->{'vecwsm_'.$request->input('sensorid').'_end'} = date("Y-m-d H:i:s", ($request->input('end')/1000));
+		$measurement->save();
+
+		return response()->json(array('succes' => 1));
+	}
 }

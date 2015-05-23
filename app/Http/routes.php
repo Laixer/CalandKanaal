@@ -311,7 +311,20 @@ $app->get('graph/sensors/{id}/{sensor}', function($id, $sensor) {
         $arr = array(strtotime($row->measurement_time), $row->{'val_'.$sensor.'_0'}, $row->{'val_'.$sensor.'_1'});
         array_push($tarr, $arr);
     }
-    return response()->json(array("columns" => $columns, "data"=> $tarr));
+    $measurement = Measurement::find($id);
+    $begin = NULL;
+    $end = NULL;
+    if ($measurement->{'vecwsm_'.$sensor.'_begin'} && $measurement->{'vecwsm_'.$sensor.'_end'}) {
+    	$begin = strtotime($measurement->{'vecwsm_'.$sensor.'_begin'})*1000;
+    	$end = strtotime($measurement->{'vecwsm_'.$sensor.'_end'})*1000;
+    }
+
+    return response()->json(array(
+    	"columns" => $columns,
+    	"data"=> $tarr,
+    	"begin" => $begin,
+    	"end" => $end
+    ));
 });
 
 $app->get('logout', function() {
@@ -321,9 +334,13 @@ $app->get('logout', function() {
 
 });
 
+//$app->get('graph/getsplit/{id}/{sensor}', function($id, $sensor) {
+
 $app->post('newmeasurement', 'App\Http\Controllers\ParserController@doNewmeasurement');
 
 $app->post('graph', 'App\Http\Controllers\ParserController@doUpdateMessage');
+
+$app->post('/graph/split', 'App\Http\Controllers\ParserController@doSplit');
 
 $app->post('newuser', 'App\Http\Controllers\UserController@doNew');
 
