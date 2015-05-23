@@ -188,6 +188,7 @@
 						},
 						xaxis: {
 							mode: "time",
+							timezone: "browser",
 							axisLabel: 'Time',
 							min: begintime,
 							max: endtime
