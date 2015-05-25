@@ -56,12 +56,12 @@
 				e.preventDefault();
 				$('input').prop('disabled', true);
 				$('button[type="submit"]').text('Signing in').addClass('disabled');
-				$.post( "/login", {email:$('input[name="email"').val(),password:$('input[name="password"').val(),_token:$('input[name="_token"').val()}, function(data){
+				$.post( "/login", {email:$('input[name="email"]').val(),password:$('input[name="password"]').val(),_token:$('input[name="_token"]').val()}, function(data){
 					var $rs = data;
 					if ($rs.error) {
 						$('.login-box-msg').html('<font color="red">Email/password invalid</font>');
 						$('input').prop('disabled', false);
-						$('input[name="password"').val("");
+						$('input[name="password"]').val("");
 						$('button[type="submit"]').text('Sign In').removeClass('disabled');
 					} else {
 						 window.location.replace($rs.location);
