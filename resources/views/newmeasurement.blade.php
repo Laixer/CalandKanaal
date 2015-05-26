@@ -58,7 +58,7 @@
                       <i class="fa fa-paperclip"></i> Add ASC file
                       <input type="file" name="ascfile">
                     </div>
-                    <p class="help-block">Max. 1GB</p>
+                    <p class="help-block">Max. {{ ini_get('upload_max_filesize') }}</p>
                   </div>
 					<div class="row margin"><div class="col-sm-6">
 					 <div class="input-group">
