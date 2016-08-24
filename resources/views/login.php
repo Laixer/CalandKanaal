@@ -16,7 +16,7 @@
   <body class="login-page">
     <div class="login-box">
       <div class="login-logo">
-        <a href="javascript:void(0);"><b>Admin</b>LTE</a>
+        <a href="javascript:void(0);"><b>Caland</b>Kanaal</a>
       </div>
       <div class="login-box-body">
         <p class="login-box-msg">Sign in to start your session </p>
