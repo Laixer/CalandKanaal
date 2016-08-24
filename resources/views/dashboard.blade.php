@@ -40,7 +40,7 @@ function get_gravatar( $email, $s = 80, $d = 'mm', $r = 'g', $img = false, $atts
     <div class="wrapper">
 
       <header class="main-header">
-        <a href="/" class="logo"><b>Admin</b>LTE</a>
+        <a href="/" class="logo"><b>Caland</b>Kanaal</a>
         <nav class="navbar navbar-static-top" role="navigation">
           <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
             <span class="sr-only">Toggle navigation</span>
